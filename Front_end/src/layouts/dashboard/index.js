@@ -17,9 +17,19 @@ import  useSettings  from "../../hooks/useSettings";
   
   return (
     <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        height: "100vh", // Chiếm toàn bộ chiều cao
+      }}
+    >
+
+    
       <Box
         p={2}
         sx={{
+          
           backgroudColor: theme.palette.background.paper,
           boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
           height: "100vh",
@@ -33,14 +43,14 @@ import  useSettings  from "../../hooks/useSettings";
           sx={{ height: "100%" }}
           spacing={3}
         >
-          <Stack  alignItems={"center"} spacing={4}>
+          <Stack  alignItems={"center"} spacing={3}>
           <Box
             sx={{
               backgroudColor: theme.palette.primary.main,
 
               height: 64,
               width: 64,
-              borderRadius: 2.5,
+              borderRadius: 1.5,
             }}
           >
             <img
@@ -74,7 +84,7 @@ import  useSettings  from "../../hooks/useSettings";
               ) : (
                 <IconButton
                   onClick={() => setSelected(el.index)}
-                  sx={{ width: "max-content", color: "#000" }}
+                  sx={{ width: "max-content", color: theme.palette.mode === "Light" ?"#000" :theme.palette.text.primary }}
                   key={el.index}
                 >
                   {el.icon}
@@ -95,7 +105,9 @@ import  useSettings  from "../../hooks/useSettings";
                 </IconButton>
               </Box>
             ) : (
-              <IconButton onClick={() => setSelected(3)}>
+              <IconButton onClick={() => setSelected(3)}
+                sx={{ width: "max-content", color: theme.palette.mode === "Light" ?"#000" :theme.palette.text.primary}}
+              >
                 <Gear />
               </IconButton>
             )}
@@ -113,8 +125,9 @@ import  useSettings  from "../../hooks/useSettings";
           </Stack>
         </Stack>
       </Box>
-
+      
       <Outlet />
+      </Box>
     </>
   );
 };
