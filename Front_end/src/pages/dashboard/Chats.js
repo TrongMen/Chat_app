@@ -11,9 +11,10 @@ import {
 } from "@mui/material";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
 import React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
 import { ChatList } from "../../data";
+import { SimpleBarStyle } from "../../components/Scrollbar";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -44,14 +45,18 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const ChatElement = ({id,name,img,msg,time,unread,online}) => {
+const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         width: "100%",
-        height: 60,
+
         borderRadius: 1,
-        backgroundColor: "#fff",
+        backgroundColor:
+          theme.palette.mode === "light"
+            ? "#fff"
+            : theme.palette.background.default,
       }}
       p={1.5}
     >
@@ -60,31 +65,38 @@ const ChatElement = ({id,name,img,msg,time,unread,online}) => {
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Stack direction={"row"} spacing={2} alignItems={"center"} justifyContent={"space-between"}>
-          {online ? <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            variant="dot"
-          >
+        <Stack
+          direction={"row"}
+          spacing={2}
+          // alignItems={"center"}
+          // justifyContent={"space-between"}
+        >
+          {online ? (
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant="dot"
+            >
+              <Avatar src={faker.image.avatar()} />
+            </StyledBadge>
+          ) : (
             <Avatar src={faker.image.avatar()} />
-          </StyledBadge> : <Avatar src={faker.image.avatar()} />}
-          
+          )}
 
           <Stack spacing={0.3}>
             <Typography variant="subtitle2">{name}</Typography>
             <Typography variant="caption">{msg} </Typography>
           </Stack>
-         
-
-          <Stack spacing={1.5}
-          alignItems={"flex-end"}
-         >
+          </Stack>
+          <Stack spacing={0.5}></Stack>
+          <Stack spacing={2} alignItems={"center"}>
             <Typography sx={{ fontWeight: 600 }} variant="caption">
               {time}
             </Typography>
+
             <Badge color="primary" badgeContent={unread}></Badge>
           </Stack>
-        </Stack>
+        
       </Stack>
     </Box>
   );
@@ -93,7 +105,7 @@ const ChatElement = ({id,name,img,msg,time,unread,online}) => {
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.paper, 1),
+  backgroundColor: alpha(theme.palette.background.default, 1),
   marginLeft: 0,
   width: "100%",
 }));
@@ -118,17 +130,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 const Chats = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         position: "-moz-initial",
-        height: "100vh",
+
         width: 320,
-        backgroundColor: "#F8FAFF",
+        backgroundColor:
+          theme.palette.mode === "light"
+            ? "#F8FAFF"
+            : theme.palette.background.paper,
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
       }}
     >
-      <Stack p={2} spacing={2}>
+      <Stack p={2} spacing={2} sx={{ height: "100vh" }}>
         <Stack
           direction={"row"}
           alignItems={"center"}
@@ -157,15 +173,29 @@ const Chats = () => {
           </Stack>
           <Divider />
         </Stack>
-        <Stack direction={"column"}>
-          <Stack spacing={2.4}>
-            <Typography variant="subtitle2" sx={{ color: "#676767" }}>
-              Ghim tin nhắn
-            </Typography>
-            {ChatList.filter((el) => el.pinned).map((el) => {
-              return <ChatElement {...el}/>;
-            })}
-          </Stack>
+        <Stack
+          spacing={2}
+          direction={"column"}
+          sx={{ flexGrow: 1, overFlow: "scroll", height: "100%" }}
+        >
+          <SimpleBarStyle timeout={500} clickOnTrack={false}>
+            <Stack spacing={2.4}>
+              <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                Ghim tin nhắn
+              </Typography>
+              {ChatList.filter((el) => el.pinned).map((el) => {
+                return <ChatElement {...el} />;
+              })}
+            </Stack>
+            <Stack spacing={2.4}>
+              <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                Tin nhắn
+              </Typography>
+              {ChatList.filter((el) => !el.pinned).map((el) => {
+                return <ChatElement {...el} />;
+              })}
+            </Stack>
+          </SimpleBarStyle>
         </Stack>
       </Stack>
     </Box>
