@@ -68,8 +68,8 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
         <Stack
           direction={"row"}
           spacing={2}
-          // alignItems={"center"}
-          // justifyContent={"space-between"}
+          alignItems={"center"}
+          justifyContent={"space-between"}
         >
           {online ? (
             <StyledBadge
@@ -134,8 +134,7 @@ const Chats = () => {
   return (
     <Box
       sx={{
-        position: "-moz-initial",
-
+        position: "relative",
         width: 320,
         backgroundColor:
           theme.palette.mode === "light"
@@ -144,7 +143,7 @@ const Chats = () => {
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
       }}
     >
-      <Stack p={2} spacing={2} sx={{ height: "100vh" }}>
+      <Stack p={3} spacing={2} sx={{ height: "100vh" }}>
         <Stack
           direction={"row"}
           alignItems={"center"}
@@ -166,7 +165,7 @@ const Chats = () => {
             />
           </Search>
         </Stack>
-        <Stack spacing={1}>
+        <Stack spacing={2}>
           <Stack direction={"row"} alignItems={"center"} spacing={1.5}>
             <ArchiveBox size={24}></ArchiveBox>
             <Button> Archive</Button>
@@ -176,7 +175,7 @@ const Chats = () => {
         <Stack
           spacing={2}
           direction={"column"}
-          sx={{ flexGrow: 1, overFlow: "scroll", height: "100%" }}
+          sx={{ flexGrow: 1, overflow: "scroll", height: "100%" }}
         >
           <SimpleBarStyle timeout={500} clickOnTrack={false}>
             <Stack spacing={2.4}>
