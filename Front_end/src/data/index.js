@@ -11,15 +11,15 @@ import {
 
 const Profile_Menu = [
   {
-    title: "Profile",
+    title: "Hồ sơ",
     icon: <User />,
   },
   {
-    title: "Settings",
+    title: "Cài đặt",
     icon: <Gear />,
   },
   {
-    title: "Profile",
+    title: "Đăng xuất",
     icon: <SignOut />,
   },
 ];
@@ -201,22 +201,10 @@ const Chat_History = [
 
 const Message_options = [
   {
-    title: "Reply",
+    title: "Trả lời",
   },
   {
-    title: "React to message",
-  },
-  {
-    title: "Forward message",
-  },
-  {
-    title: "Star message",
-  },
-  {
-    title: "Report",
-  },
-  {
-    title: "Delete Message",
+    title: "Xóa tin nhắn",
   },
 ];
 

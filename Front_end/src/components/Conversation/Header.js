@@ -42,7 +42,7 @@ const Header = () => {
             </Box>
             <Stack spacing={0.2}>
               <Typography>{faker.name.fullName()}</Typography>
-              <Typography variant="caption">Online</Typography>
+              <Typography variant="caption">Đang hoạt động</Typography>
             </Stack>
           </Stack>
           <Stack direction={"row"} spacing={3}>
