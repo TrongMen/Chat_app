@@ -20,7 +20,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     backgroundColor: "#44b700",
     color: "#44b700",
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`, // vừa sửa paper
     "&::after": {
       position: "absolute",
       top: 0,
@@ -56,7 +56,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
         backgroundColor:
           theme.palette.mode === "light"
             ? "#fff"
-            : theme.palette.background.default,
+            : theme.palette.background.default, // vừa sửa default
       }}
       p={1.5}
     >
@@ -105,7 +105,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.default, 1),
+  backgroundColor: alpha(theme.palette.background.default, 1), // vừa sửa default
   marginLeft: 0,
   width: "100%",
 }));
@@ -139,7 +139,8 @@ const Chats = () => {
         backgroundColor:
           theme.palette.mode === "light"
             ? "#F8FAFF"
-            : theme.palette.background.paper,
+          
+            : theme.palette.background.paper, //vừa sửa paper 
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
       }}
     >
