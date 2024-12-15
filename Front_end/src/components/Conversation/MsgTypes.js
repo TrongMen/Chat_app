@@ -143,7 +143,7 @@ const MediaMsg = ({ el }) => {
         p={1.5}
         sx={{
           backgroundColor: el.incoming
-            ? theme.palette.background.default // vừa sửa default
+            ? theme.palette.background.neutral // vừa sửa default
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
@@ -175,7 +175,7 @@ const TextMsg = ({ el }) => {
         p={1.5}
         sx={{
           backgroundColor: el.incoming
-            ? theme.palette.background.default // vừa sửa default
+            ? theme.palette.background.neutral // vừa sửa default
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
