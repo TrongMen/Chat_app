@@ -9,9 +9,17 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Bell, CaretRight,  Phone, Prohibit, Trash, VideoCamera, X } from "phosphor-react";
+import {
+  Bell,
+  CaretRight,
+  Phone,
+  Prohibit,
+  Trash,
+  VideoCamera,
+  X,
+} from "phosphor-react";
 import { useDispatch } from "react-redux";
-import { ToggleSideBar } from "../redux/slices/app";
+import { ToggleSideBar, UpdateSidebar } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
 import AntSwitch from "./AntSwitch";
 
@@ -47,6 +55,7 @@ const Contact = () => {
             </IconButton>
           </Stack>
         </Box>
+        {/* Body */}
         <Stack
           sx={{
             height: "100%",
@@ -97,8 +106,17 @@ const Contact = () => {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <Typography variant="subtitle2">Video, Link & Tài liệu</Typography>
-            <Button endIcon={<CaretRight />}>401</Button>
+            <Typography variant="subtitle2">Video/Ảnh, Link & Tài liệu</Typography>
+            <Button
+              onClick={() => {
+                dispatch(UpdateSidebar("SHARED"));
+              }}
+              endIcon={<CaretRight />}
+              className="NutShowMore"
+              sx={{fontSize:12}}
+            >
+              Thêm
+            </Button>
           </Stack>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
             {[1, 2, 3].map((el) => (
@@ -126,20 +144,30 @@ const Contact = () => {
           </Stack>
           <Divider />
           <Typography>1 nhóm chung</Typography>
-          <Stack direction={"row"} spacing={2} alignItems={"center"} className="InfoGroup">
+          <Stack
+            direction={"row"}
+            spacing={2}
+            alignItems={"center"}
+            className="InfoGroup"
+          >
             <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} />
             <Stack spacing={0.5}>
               <Typography variant="subtitle2">Công Nghệ Mới</Typography>
               <Typography variant="caption">Nam,Cuong,Minh</Typography>
             </Stack>
           </Stack>
-          <Stack className="ButtonDelete-Block" direction={"row"} alignItems={"center"} spacing={2}>
-              <Button startIcon={<Prohibit/>} fullWidth variant="outlined"> 
-                Chặn
-              </Button>
-              <Button startIcon={<Trash/>} fullWidth variant="outlined">
-                Xóa
-              </Button>
+          <Stack
+            className="ButtonDelete-Block"
+            direction={"row"}
+            alignItems={"center"}
+            spacing={2}
+          >
+            <Button startIcon={<Prohibit />} fullWidth variant="outlined">
+              Chặn
+            </Button>
+            <Button startIcon={<Trash />} fullWidth variant="outlined">
+              Xóa
+            </Button>
           </Stack>
         </Stack>
       </Stack>
