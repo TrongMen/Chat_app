@@ -6,6 +6,8 @@ import { CaretLeft } from "phosphor-react";
 import { useDispatch } from "react-redux";
 import { UpdateSidebar } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
+import { SHARED_DOCS, SHARED_LINKS } from "../data";
+import { DocMsg, LinkMsg } from "./Conversation/MsgTypes";
 
 const SharedMessage = () => {
   const theme = useTheme();
@@ -64,6 +66,7 @@ const SharedMessage = () => {
             overflowY: "scroll",
           }}
           p={3}
+          spacing={value === 1 ? 1 : 3}
           justifyContent={"space-around"}
           className="ThongTinCaNhan"
         >
@@ -84,7 +87,10 @@ const SharedMessage = () => {
                     })}
                   </Grid>
                 );
-
+              case 1:
+                return SHARED_LINKS.map((el) => <LinkMsg el={el} />);
+              case 2:
+                return SHARED_DOCS.map((el) => <DocMsg el={el} />);
               default:
                 break;
             }

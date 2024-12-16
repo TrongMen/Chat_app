@@ -223,6 +223,77 @@ const Message_options = [
   },
 ];
 
+const SHARED_LINKS =[
+  {
+    id: 1,
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    id: 2,
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    id: 3,
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    id: 4,
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+];
+
+const SHARED_DOCS =[
+  {
+    id: 1,
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },{
+    id: 2,
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },{
+    id: 3,
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },{
+    id: 4,
+    type: "msg",
+    subtype: "doc",
+    message: "Yes sure, here you go.",
+    incoming: true,
+    outgoing: false,
+  },
+];
+
 export {
   Profile_Menu,
   Nav_Setting,
@@ -230,4 +301,6 @@ export {
   ChatList,
   Chat_History,
   Message_options,
+  SHARED_LINKS,
+  SHARED_DOCS,
 };
