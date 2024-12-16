@@ -1,10 +1,11 @@
-import { Box, IconButton, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Tab, Tabs } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { CaretLeft } from "phosphor-react";
 import { useDispatch } from "react-redux";
 import { UpdateSidebar } from "../redux/slices/app";
+import { faker } from "@faker-js/faker";
 
 const SharedMessage = () => {
   const theme = useTheme();
@@ -65,7 +66,30 @@ const SharedMessage = () => {
           p={3}
           justifyContent={"space-around"}
           className="ThongTinCaNhan"
-        ></Stack>
+        >
+          {(() => {
+            switch (value) {
+              case 0:
+                return (
+                  <Grid container spacing={2}>
+                    {[0, 1, 2, 3, 4, 5, 6].map((el) => {
+                      return (
+                        <Grid item xs={4}>
+                          <img
+                            src={faker.image.avatar()}
+                            alt={faker.name.fullName()}
+                          />
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                );
+
+              default:
+                break;
+            }
+          })()}
+        </Stack>
       </Stack>
     </Box>
   );
