@@ -2,12 +2,18 @@ import {
   Avatar,
   Box,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Divider,
   IconButton,
+  Slide,
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Bell,
@@ -22,10 +28,69 @@ import { useDispatch } from "react-redux";
 import { ToggleSideBar, UpdateSidebar } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
 import AntSwitch from "./AntSwitch";
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+const BlockDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>Chặn thông tin </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Bạn có chắc chắn muốn chặn không?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Hủy</Button>
+        <Button onClick={handleClose}>Chặn</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+const DeleteDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>Xóa thông tin </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Bạn có chắc chắn muốn xóa không?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Hủy</Button>
+        <Button onClick={handleClose}>Xóa</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
 
 const Contact = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const [openBlock, setOpenBlock] = useState(false);
+  const [openDel, setOpenDel] = useState(false);
+
+  const handleCloseBlock = () => {
+    setOpenBlock(false);
+  };
+
+  const handleCloseDelete = () => {
+    setOpenDel(false);
+  };
+
   return (
     <Box sx={{ width: 320, height: "100vh" }}>
       <Stack sx={{ height: "100%" }}>
@@ -106,14 +171,16 @@ const Contact = () => {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <Typography variant="subtitle2">Video/Ảnh, Link & Tài liệu</Typography>
+            <Typography variant="subtitle2">
+              Video/Ảnh, Link & Tài liệu
+            </Typography>
             <Button
               onClick={() => {
                 dispatch(UpdateSidebar("SHARED"));
               }}
               endIcon={<CaretRight />}
               className="NutShowMore"
-              sx={{fontSize:12}}
+              sx={{ fontSize: 12 }}
             >
               Thêm
             </Button>
@@ -162,15 +229,35 @@ const Contact = () => {
             alignItems={"center"}
             spacing={2}
           >
-            <Button startIcon={<Prohibit />} fullWidth variant="outlined">
+            <Button
+              onClick={() => {
+                setOpenBlock(true);
+              }}
+              startIcon={<Prohibit />}
+              fullWidth
+              variant="outlined"
+            >
               Chặn
             </Button>
-            <Button startIcon={<Trash />} fullWidth variant="outlined">
+            <Button
+              onClick={() => {
+                setOpenDel(true);
+              }}
+              startIcon={<Trash />}
+              fullWidth
+              variant="outlined"
+            >
               Xóa
             </Button>
           </Stack>
         </Stack>
       </Stack>
+      {openBlock && (
+        <BlockDialog open={openBlock} handleClose={handleCloseBlock} />
+      )}
+      {openDel && (
+        <DeleteDialog open={openDel} handleClose={handleCloseDelete} />
+      )}
     </Box>
   );
 };
