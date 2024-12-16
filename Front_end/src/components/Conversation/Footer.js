@@ -58,6 +58,7 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
       fullWidth
       placeholder="Nhập tin nhắn"
       variant="filled"
+      className="NhapTinNhan"
       InputProps={{
         disableUnderline: true,
         startAdornment: (
@@ -85,19 +86,19 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
                 </Tooltip>
               ))}
             </Stack>
-            <InputAdornment position="start">
+            <InputAdornment position="start" className="ListGuiAnh/Video" >
               <IconButton
                 onClick={() => {
                   setOpenActions(!openActions);
                 }}
               >
-                <LinkSimple />
+                <LinkSimple  />
               </IconButton>
             </InputAdornment>
           </Stack>
         ),
         endAdornment: (
-          <InputAdornment position="end">
+          <InputAdornment position="end" className="Emoji"> 
             <IconButton
               onClick={() => {
                 setOpenPicker((prev) => !prev);
