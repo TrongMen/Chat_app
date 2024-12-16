@@ -73,6 +73,7 @@ const SideBar = () => {
             {Nav_Buttons.map((el) =>
               el.index === selected ? (
                 <Box
+                key={el.index} 
                   p={1}
                   sx={{
                     backgroundColor: theme.palette.primary.main,
@@ -88,6 +89,7 @@ const SideBar = () => {
                 </Box>
               ) : (
                 <IconButton
+                
                   onClick={() => setSelected(el.index)}
                   sx={{
                     width: "max-content",
@@ -161,7 +163,7 @@ const SideBar = () => {
           >
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((el) => (
-                <MenuItem onClick={handleClick}>
+                <MenuItem  key={el.id}  onClick={handleClick}>
                   <Stack
                     sx={{ width: 100 }}
                     direction={"row"}

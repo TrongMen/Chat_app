@@ -11,14 +11,17 @@ import {
 
 const Profile_Menu = [
   {
+    id: 0,
     title: "Hồ sơ",
     icon: <User />,
   },
   {
+    id: 1,
     title: "Cài đặt",
     icon: <Gear />,
   },
   {
+    id: 2,
     title: "Đăng xuất",
     icon: <SignOut />,
   },
@@ -131,28 +134,33 @@ const ChatList = [
 
 const Chat_History = [
   {
+    id: 1,
     type: "msg",
     message: "Hi 👋🏻, How are ya ?",
     incoming: true,
     outgoing: false,
   },
   {
+    id: 2,
     type: "divider",
     text: "Today",
   },
   {
+    id: 3,
     type: "msg",
     message: "Hi 👋 Panda, not bad, u ?",
     incoming: false,
     outgoing: true,
   },
   {
+    id: 4,
     type: "msg",
     message: "Can you send me an abstarct image?",
     incoming: false,
     outgoing: true,
   },
   {
+    id: 5,
     type: "msg",
     message: "Ya sure, sending you a pic",
     incoming: true,
@@ -160,6 +168,7 @@ const Chat_History = [
   },
 
   {
+    id: 6,
     type: "msg",
     subtype: "img",
     message: "Here You Go",
@@ -168,6 +177,7 @@ const Chat_History = [
     outgoing: false,
   },
   {
+    id: 7,
     type: "msg",
     message: "Can you please send this in file format?",
     incoming: false,
@@ -175,6 +185,7 @@ const Chat_History = [
   },
 
   {
+    id: 8,
     type: "msg",
     subtype: "doc",
     message: "Yes sure, here you go.",
@@ -182,6 +193,7 @@ const Chat_History = [
     outgoing: false,
   },
   {
+    id: 9,
     type: "msg",
     subtype: "link",
     preview: faker.image.cats(),
@@ -190,6 +202,7 @@ const Chat_History = [
     outgoing: false,
   },
   {
+    id: 10,
     type: "msg",
     subtype: "reply",
     reply: "This is a reply",
@@ -201,9 +214,11 @@ const Chat_History = [
 
 const Message_options = [
   {
+    index: 0,
     title: "Trả lời",
   },
   {
+    index: 1,
     title: "Xóa tin nhắn",
   },
 ];
