@@ -11,16 +11,21 @@ const Login = () => {
       sx={{
         mb: 5,
         position: "relative",
-        
-        
+        backgroundColor: "rgba(244, 240, 240, 0.8)", // Màu xám trong suốt
+        borderRadius: "20px", // Bo tròn góc
+
+        maxWidth: "100%",
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Thêm bóng mờ cho form
       }}
     >
-      <Typography variant="h4">Đăng nhập</Typography>
-      
+      <Typography variant="h4" p={1}>
+        Đăng nhập
+      </Typography>
+
       {/* Login Form */}
       <LoginForm />
-      {/* Auth Social */}
-      <Stack direction={"row"} spacing={0.5}>
+
+      <Stack direction={"row"} spacing={1} p={1}>
         <Typography variant="body2">Bạn chưa có tài khoản ?</Typography>
         <Link to={"/auth/register"} variant="subtitle2" component={RouterLink}>
           Đăng ký

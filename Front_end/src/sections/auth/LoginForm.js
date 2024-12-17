@@ -44,7 +44,7 @@ const LoginForm = () => {
   };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={3}>
+      <Stack p={1} spacing={3}>
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
@@ -69,11 +69,12 @@ const LoginForm = () => {
           }}
         />
       </Stack>
-      <Stack alignItems={"flex-end"} sx={{ my: 2 }}>
+      <Stack alignItems={"flex-end"} sx={{ my: 2 }} p={1}>
         <Link variant="body2" color={"inherit"} to="/auth/forgot-password">
           Quên mật khẩu ?
         </Link>
       </Stack>
+      <Stack p={1} >
       <Button
         fullWidth
         color="inherit"
@@ -82,12 +83,14 @@ const LoginForm = () => {
         variant="contained"
         sx={{
           backgroundColor: "text.primary",
+
           color: (theme) =>
             theme.palette.mode === "light" ? "common.white" : "grey.800",
         }}
       >
         Đăng nhập
       </Button>
+      </Stack>
     </FormProvider>
   );
 };
