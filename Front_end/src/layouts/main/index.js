@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const MainLayout = () => {
   return (
     <>
-      <Container sx={{ mt: 5 }} maxWidth="sm">
+      <Container sx={{ mt: 5}} maxWidth="sm">
         
         <Stack spacing={5}>
           <Stack

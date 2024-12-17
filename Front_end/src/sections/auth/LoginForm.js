@@ -4,12 +4,12 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Stack } from "@mui/system";
-import { Alert, IconButton, InputAdornment } from "@mui/material";
+import { Alert, Button, IconButton, InputAdornment, Link } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
 
 const LoginForm = () => {
-  const [ showPassword, setShowPassword ] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
       .required("Nhập email bắt buộc")
@@ -48,28 +48,46 @@ const LoginForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
-      
-      <RHFTextField name={"email"} label="Địa chỉ email" />
-      <RHFTextField
-        name={"password"}
-        label="Mật khẩu"
-        type={showPassword ? "text" : "password"}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment>
-              <IconButton
-                onClick={() => {
-                  setShowPassword(!showPassword);
-                }}
-              >
-                {showPassword ? <Eye /> : <EyeSlash />}
-              </IconButton>
-            </InputAdornment>
-          ),    
-        }}
-      />
+
+        <RHFTextField name={"email"} label="Địa chỉ email" />
+        <RHFTextField
+          name={"password"}
+          label="Mật khẩu"
+          type={showPassword ? "text" : "password"}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment>
+                <IconButton
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                >
+                  {showPassword ? <Eye /> : <EyeSlash />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
       </Stack>
-      
+      <Stack alignItems={"flex-end"} sx={{ my: 2 }}>
+        <Link variant="body2" color={"inherit"} to="/auth/forgot-password">
+          Quên mật khẩu ?
+        </Link>
+      </Stack>
+      <Button
+        fullWidth
+        color="inherit"
+        size="large"
+        type="submit"
+        variant="contained"
+        sx={{
+          backgroundColor: "text.primary",
+          color: (theme) =>
+            theme.palette.mode === "light" ? "common.white" : "grey.800",
+        }}
+      >
+        Đăng nhập
+      </Button>
     </FormProvider>
   );
 };
