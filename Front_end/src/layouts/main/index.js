@@ -18,7 +18,7 @@ const MainLayout = () => {
             direction={"column"}
             alignItems={"center"}
           >
-            <h1>Logo</h1>
+            <h1 style={{color:"white",margin:10}}>Chat App</h1>
           </Stack>
         </Stack>
         {/* <div>Main Layout</div> */}
