@@ -1,10 +1,24 @@
 import { Container, Stack } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-
+import BG from "../../assets/Images/BG1.jpeg";
 const MainLayout = () => {
   return (
     <>
+    <div
+        style={{
+          backgroundImage: `url(${BG})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          minHeight: "100vh",
+          margin: 0, // Loại bỏ khoảng trắng thừa
+          padding: 0, // Loại bỏ khoảng trắng thừa
+          display: "flex", // Căn giữa nội dung
+          justifyContent: "center", // Căn giữa theo chiều ngang
+          alignItems: "center", // Căn giữa theo chiều dọc
+        }}
+      >
       <Container
         sx={{
           mt: 5,
@@ -24,6 +38,7 @@ const MainLayout = () => {
         {/* <div>Main Layout</div> */}
         <Outlet />
       </Container>
+      </div>
     </>
   );
 };

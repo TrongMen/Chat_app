@@ -1,9 +1,7 @@
 import React from "react";
-import FormProvider from "../../components/hook-form/FormProvider";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import {
   Alert,
   Button,
@@ -13,11 +11,14 @@ import {
   Stack,
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
+import FormProvider from "../../components/hook-form/FormProvider";
 import { Eye, EyeSlash } from "phosphor-react";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const LoginSchema = Yup.object().shape({
+  const RegisterSchema = Yup.object().shape({
+    firstName: Yup.string().required("First Name is required"),
+    lastName: Yup.string().required("Last Name is required"),
     email: Yup.string()
       .required("Nhập email bắt buộc")
       .email("Email không hợp lệ"),
@@ -25,12 +26,14 @@ const LoginForm = () => {
   });
 
   const defaultValues = {
+    firstName: "",
+    lastName: "",
     email: "abc@gmail.com",
     password: "123",
   };
 
   const methods = useForm({
-    resolver: yupResolver(LoginSchema),
+    resolver: yupResolver(RegisterSchema),
     defaultValues,
   });
 
@@ -55,31 +58,31 @@ const LoginForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+            <RHFTextField name={"firstName"} label="First Name"/>
+            <RHFTextField name={"lastName"} label="Last Name"/>
 
-        <RHFTextField name={"email"} label="Địa chỉ email" />
+        </Stack>
+        <RHFTextField name={"email"} label="Email"/>
         <RHFTextField
-          name={"password"}
-          label="Mật khẩu"
-          type={showPassword ? "text" : "password"}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment>
-                <IconButton
-                  onClick={() => {
-                    setShowPassword(!showPassword);
+                  name={"password"}
+                  label="Mật khẩu"
+                  type={showPassword ? "text" : "password"}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment>
+                        <IconButton
+                          onClick={() => {
+                            setShowPassword(!showPassword);
+                          }}
+                        >
+                          {showPassword ? <Eye /> : <EyeSlash />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
                   }}
-                >
-                  {showPassword ? <Eye /> : <EyeSlash />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Stack>
-      <Stack alignItems={"flex-end"} sx={{ my: 2 }} p={1}>
-        <Link variant="body2" color={"inherit"} to="/auth/forgot-password">
-          Quên mật khẩu ?
-        </Link>
+                />
+
       </Stack>
       <Stack p={1}>
         <Button
@@ -95,11 +98,11 @@ const LoginForm = () => {
               theme.palette.mode === "light" ? "common.white" : "grey.800",
           }}
         >
-          Đăng nhập
+          Tạo tài khoản
         </Button>
       </Stack>
     </FormProvider>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
