@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
-
+import { Link as RouterLink } from "react-router-dom";
 const LoginForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const LoginSchema = Yup.object().shape({
@@ -77,7 +77,7 @@ const LoginForm = () => {
         />
       </Stack>
       <Stack alignItems={"flex-end"} sx={{ my: 2 }} p={1}>
-        <Link variant="body2" color={"inherit"} to="/auth/forgot-password">
+        <Link component={RouterLink} variant="body2" color={"inherit"} to={"/auth/reset-password"}>
           Quên mật khẩu ?
         </Link>
       </Stack>
