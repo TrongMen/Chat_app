@@ -3,9 +3,8 @@ import { CaretLeft } from "phosphor-react";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-export const NewPassword = () => {
+const NewPassword = () => {
   return (
-    <>
     <Stack
       spacing={2}
       sx={{
@@ -25,21 +24,19 @@ export const NewPassword = () => {
       </Typography>
 
       {/* NewPS Form */}
-      
+      <Link
+        component={RouterLink}
+        to={"/auth/login"}
+        color={"inherit"}
+        variant="subtitle2"
+        sx={{ mt: 3, mx: "auto", alignItems: "center" }}
+        p={1}
+      >
+        <CaretLeft size={11} />
+        Quay lại trang đăng nhập
+      </Link>
     </Stack>
-    <Link
-    component={RouterLink}
-    to={"/auth/login"}
-    color={"inherit"}
-    variant="subtitle2"
-    sx={{ mt: 3, mx: "auto", alignItems: "center" }}
-    p={1}
-  >
-    <CaretLeft size={11} />
-    Quay lại trang đăng nhập
-  </Link>
-  </>
   );
 };
 
-
+export default NewPassword;
