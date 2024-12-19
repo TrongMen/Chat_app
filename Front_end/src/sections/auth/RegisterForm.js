@@ -7,7 +7,6 @@ import {
   Button,
   IconButton,
   InputAdornment,
-  Link,
   Stack,
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
@@ -28,8 +27,8 @@ const RegisterForm = () => {
   const defaultValues = {
     firstName: "",
     lastName: "",
-    email: "abc@gmail.com",
-    password: "123",
+    email: "",
+    password: "",
   };
 
   const methods = useForm({

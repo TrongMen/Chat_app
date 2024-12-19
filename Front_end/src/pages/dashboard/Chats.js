@@ -5,16 +5,16 @@ import {
   Button,
   Divider,
   IconButton,
-  InputBase,
   Stack,
   Typography,
 } from "@mui/material";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
 import React from "react";
-import { styled, alpha, useTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
 import { ChatList } from "../../data";
 import { SimpleBarStyle } from "../../components/Scrollbar";
+import { Search, SearchInconWrapper, StyledInputBase } from "../../components/Search";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -102,33 +102,7 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
   );
 };
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.default, 1), // vừa sửa default
-  marginLeft: 0,
-  width: "100%",
-}));
 
-const SearchInconWrapper = styled("div")(({ theme }) => ({
-  position: "absolute",
-  padding: theme.spacing(0, 2),
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  height: "100%",
-  pointerEvents: "none",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-  },
-}));
 const Chats = () => {
   const theme = useTheme();
   return (

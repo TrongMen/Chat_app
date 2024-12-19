@@ -9,28 +9,26 @@ import {
   Button,
   IconButton,
   InputAdornment,
-  Link,
+ 
   Stack,
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
-import { Link as RouterLink } from "react-router-dom";
-const LoginForm = () => {
+const NewPWForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("Nhập email bắt buộc")
-      .email("Email không hợp lệ"),
-    password: Yup.string().required("Nhập mật khẩu bắt buộc"),
+  const NewPWSchema = Yup.object().shape({
+    
+    newPassword: Yup.string().min(6,"Mật khẩu ít nhất 6 ký tự").required("Nhập mật khẩu bắt buộc"),
+    confirmPassword: Yup.string().required("Nhập mật khẩu bắt buộc").oneOf([Yup.ref('newPassword'), null], 'Mật khẩu không khớp'),
   });
 
   const defaultValues = {
-    email: "abc@gmail.com",
-    password: "123",
+    newPassword: "",
+    confirmPassword: "",
   };
 
   const methods = useForm({
-    resolver: yupResolver(LoginSchema),
+    resolver: yupResolver(NewPWSchema),
     defaultValues,
   });
 
@@ -56,10 +54,28 @@ const LoginForm = () => {
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
 
-        <RHFTextField name={"Email"} label="Nhập địa chỉ email" />
+        
         <RHFTextField
-          name={"Mật khẩu"}
-          label="Nhập mật khẩu"
+          name={"Mật khẩu mới"}
+          label="Nhập mật khẩu mới"
+          type={showPassword ? "text" : "password"}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment>
+                <IconButton
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                >
+                  {showPassword ? <Eye /> : <EyeSlash />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+       <RHFTextField
+          name={"Xác nhận mật khẩu"}
+          label="Nhập lại mật khẩu mới"
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -76,11 +92,7 @@ const LoginForm = () => {
           }}
         />
       </Stack>
-      <Stack alignItems={"flex-end"} sx={{ my: 2 }} p={1}>
-        <Link component={RouterLink} variant="body2" color={"inherit"} to={"/auth/reset-password"}>
-          Quên mật khẩu ?
-        </Link>
-      </Stack>
+      
       <Stack p={1}>
         <Button
           fullWidth
@@ -95,11 +107,11 @@ const LoginForm = () => {
               theme.palette.mode === "light" ? "common.white" : "grey.800",
           }}
         >
-          Đăng nhập
+          Xác nhận
         </Button>
       </Stack>
     </FormProvider>
   );
 };
 
-export default LoginForm;
+export default NewPWForm;

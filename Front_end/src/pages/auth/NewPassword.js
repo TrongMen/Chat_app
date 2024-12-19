@@ -2,6 +2,7 @@ import { Link, Stack, Typography } from "@mui/material";
 import { CaretLeft } from "phosphor-react";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
+import NewPWForm from "../../sections/auth/NewPWForm";
 
 const NewPassword = () => {
   return (
@@ -19,11 +20,12 @@ const NewPassword = () => {
       <Typography variant="h3" p={1}>
         Đổi lại mật khẩu
       </Typography>
-      <Typography sx={{ color: "text.primary", mb: 5 }}>
+      <Typography sx={{ color: "text.primary", mb: 5 }} p={1.5}>
         Vui lòng nhập mật khẩu mới
       </Typography>
 
       {/* NewPS Form */}
+      <NewPWForm/>
       <Link
         component={RouterLink}
         to={"/auth/login"}
