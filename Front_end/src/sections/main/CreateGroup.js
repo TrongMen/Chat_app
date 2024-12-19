@@ -1,4 +1,5 @@
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -12,11 +13,13 @@ import { useForm } from "react-hook-form";
 import FormProvider, { RHFTextField } from "../../components/hook-form";
 import RHFAutocomplete from "../../components/hook-form/RHFAutocomplete";
 
+const MEMBERS = ["AB", "C", "D"];
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const CreateGroupForm = ({}) => {
+const CreateGroupForm = ({ handleClose }) => {
   const NewGroupSchema = Yup.object().shape({
     title: Yup.string().required("Nhập tên nhóm"),
     members: Yup.array().min(2, "Phải có ít nhất 2 thành viên"),
@@ -53,7 +56,27 @@ const CreateGroupForm = ({}) => {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <RHFTextField name={"Tên nhóm"} label="Nhập tên nhóm" />
-        <RHFAutocomplete  />
+        <RHFAutocomplete
+          name={"Thành viên"}
+          label={"Tên thành viên"}
+          multiple
+          freeSolo
+          options={MEMBERS.map((option) => option)}
+          ChipProps={{ size: "medium" }}
+        />
+        <Stack
+          spacing={2}
+          direction={"row"}
+          justifyContent={"end"}
+          alignItems={"center"}
+        >
+          <Button  onClick={handleClose}>
+            Hủy
+          </Button>
+          <Button type="submit" variant="contained">
+            Tạo
+          </Button>
+        </Stack>
       </Stack>
     </FormProvider>
   );
@@ -69,12 +92,12 @@ const CreateGroup = ({ open, handleClose }) => {
       sx={{ p: 4 }}
     >
       {/* Title */}
-      <DialogTitle>Tạo nhóm mới</DialogTitle>
+      <DialogTitle sx={{mb:3}}>Tạo nhóm mới</DialogTitle>
       {/* Content */}
       <DialogContent>
         {/* Form */}
 
-        <CreateGroupForm />
+        <CreateGroupForm handleClose={handleClose} />
       </DialogContent>
     </Dialog>
   );
