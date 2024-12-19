@@ -1,8 +1,11 @@
-import { Stack, Typography } from "@mui/material";
+import { Link, Stack, Typography } from "@mui/material";
+import { CaretLeft } from "phosphor-react";
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
-const NewPassword = () => {
+export const NewPassword = () => {
   return (
+    <>
     <Stack
       spacing={2}
       sx={{
@@ -20,9 +23,23 @@ const NewPassword = () => {
       <Typography sx={{ color: "text.primary", mb: 5 }}>
         Vui lòng nhập mật khẩu mới
       </Typography>
+
+      {/* NewPS Form */}
+      
     </Stack>
-    // NewPS Form
+    <Link
+    component={RouterLink}
+    to={"/auth/login"}
+    color={"inherit"}
+    variant="subtitle2"
+    sx={{ mt: 3, mx: "auto", alignItems: "center" }}
+    p={1}
+  >
+    <CaretLeft size={11} />
+    Quay lại trang đăng nhập
+  </Link>
+  </>
   );
 };
 
-export default NewPassword;
+
