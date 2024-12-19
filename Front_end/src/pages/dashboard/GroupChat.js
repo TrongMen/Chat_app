@@ -1,13 +1,24 @@
-import { Box, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import {
   Search,
   SearchInconWrapper,
   StyledInputBase,
 } from "../../components/Search";
-import { MagnifyingGlass } from "phosphor-react";
+import { MagnifyingGlass, Plus } from "phosphor-react";
+import { useTheme } from "@mui/material/styles";
+import { SimpleBarStyle } from "../../components/Scrollbar";
+import { ChatList } from "../../data";
 
 const GroupChat = () => {
+  const theme = useTheme();
   return (
     <>
       <Stack direction={"row"} sx={{ width: "100%" }}>
@@ -39,8 +50,34 @@ const GroupChat = () => {
                 />
               </Search>
             </Stack>
-            <Stack>
-                <Typography variant="h6">Tạo nhóm</Typography>
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              spacing={2}
+              justifyContent={"space-between"}
+            >
+              <Typography variant="subtitle2" component={Link}>
+                Tạo nhóm
+              </Typography>
+              <IconButton>
+                <Plus
+                  style={{ color: (theme) => theme.palette.primary.main }}
+                />
+              </IconButton>
+            </Stack>
+            <Divider />
+            <Stack sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}>
+              <SimpleBarStyle timeout={500} clickOnTrack={false}>
+                <Stack>
+                  <Typography>Ghim</Typography>
+                </Stack>
+                {ChatList.filter((el) => el.pinned).map((el) => {
+                  return <ChatElement key={el.id} {...el} />;
+                })}
+                <Stack>
+                  <Typography>Danh sách nhóm</Typography>
+                </Stack>
+              </SimpleBarStyle>
             </Stack>
           </Stack>
         </Box>
