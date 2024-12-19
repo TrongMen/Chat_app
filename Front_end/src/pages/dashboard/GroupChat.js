@@ -82,7 +82,7 @@ const GroupChat = () => {
               sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}
             >
               <SimpleBarStyle timeout={500} clickOnTrack={false}>
-                <Stack className="GhimTinnhan" spacing={2.4}>
+                <Stack className="GhimTinnhan"  spacing={2.4}>
                   <Typography variant="subtitle2" sx={{ color: "#67667" }}>
                     Ghim
                   </Typography>
@@ -95,7 +95,7 @@ const GroupChat = () => {
                   <Typography variant="subtitle2" sx={{ color: "#67667" }}>
                     Danh sách nhóm
                   </Typography>
-                  {ChatList.filter((el) => el.pinned).map((el) => {
+                  {ChatList.filter((el) => !el.pinned).map((el) => {
                     return <ChatElement key={el.id} {...el} />;
                   })}
                 </Stack>
