@@ -49,7 +49,7 @@ const Chats = () => {
               <MagnifyingGlass color="#709CE6" />
             </SearchInconWrapper>
             <StyledInputBase
-              placeholder="Search..."
+              placeholder="Tìm ..."
               inputProps={{ "aria-label": "search" }}
             />
           </Search>

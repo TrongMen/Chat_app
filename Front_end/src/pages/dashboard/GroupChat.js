@@ -46,7 +46,7 @@ const GroupChat = () => {
               <Typography variant="h5">Nhóm</Typography>
             </Stack>
 
-            <Stack sx={{ width: "100%" }}>
+            <Stack sx={{ width: "100%" }} className="ThanhTimKiem"> 
               <Search>
                 <SearchInconWrapper>
                   <MagnifyingGlass color="#709CE6" />
