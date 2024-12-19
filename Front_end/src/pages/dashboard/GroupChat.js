@@ -16,6 +16,7 @@ import { MagnifyingGlass, Plus } from "phosphor-react";
 import { useTheme } from "@mui/material/styles";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import { ChatList } from "../../data";
+import ChatElement from "../../components/ChatElement";
 
 const GroupChat = () => {
   const theme = useTheme();
@@ -70,12 +71,16 @@ const GroupChat = () => {
               <SimpleBarStyle timeout={500} clickOnTrack={false}>
                 <Stack>
                   <Typography>Ghim</Typography>
+                  {ChatList.filter((el) => el.pinned).map((el) => {
+                    return <ChatElement key={el.id} {...el} />;
+                  })}
                 </Stack>
-                {ChatList.filter((el) => el.pinned).map((el) => {
-                  return <ChatElement key={el.id} {...el} />;
-                })}
+
                 <Stack>
                   <Typography>Danh sách nhóm</Typography>
+                  {ChatList.filter((el) => el.pinned).map((el) => {
+                    return <ChatElement key={el.id} {...el} />;
+                  })}
                 </Stack>
               </SimpleBarStyle>
             </Stack>
