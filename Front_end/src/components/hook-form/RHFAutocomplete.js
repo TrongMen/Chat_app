@@ -8,7 +8,7 @@ RHFAutocomplete.propTypes = {
   helperText: PropTypes.node,
 };
 
-export default function RHFAutocomplete({ name, helperText, ...other }) {
+export default function RHFAutocomplete({ name, label, helperText, ...other }) {
   const { control } = useFormContext();
   return (
     <Controller
