@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import FormProvider, { RHFTextField } from "../../components/hook-form";
+import RHFAutocomplete from "../../components/hook-form/RHFAutocomplete";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -52,6 +53,7 @@ const CreateGroupForm = ({}) => {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <RHFTextField name={"Tên nhóm"} label="Nhập tên nhóm" />
+        <RHFAutocomplete  />
       </Stack>
     </FormProvider>
   );
