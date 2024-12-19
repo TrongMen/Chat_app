@@ -75,7 +75,7 @@ const Chats = () => {
                 return <ChatElement key={el.id} {...el} />;
               })}
             </Stack>
-            <Stack spacing={2}>
+            <Stack spacing={2.4}>
               <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                 Tin nhắn
               </Typography>

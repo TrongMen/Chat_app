@@ -17,9 +17,15 @@ import { useTheme } from "@mui/material/styles";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import { ChatList } from "../../data";
 import ChatElement from "../../components/ChatElement";
+import CreateGroup from "../../sections/main/CreateGroup";
 
 const GroupChat = () => {
   const theme = useTheme();
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
   return (
     <>
       <Stack direction={"row"} sx={{ width: "100%" }}>
@@ -60,14 +66,21 @@ const GroupChat = () => {
               <Typography variant="subtitle2" component={Link}>
                 Tạo nhóm
               </Typography>
-              <IconButton>
+              <IconButton
+                onClick={() => {
+                  setOpenDialog(true);
+                }}
+              >
                 <Plus
                   style={{ color: (theme) => theme.palette.primary.main }}
                 />
               </IconButton>
             </Stack>
             <Divider />
-            <Stack sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}>
+            <Stack
+              spacing={3}
+              sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}
+            >
               <SimpleBarStyle timeout={500} clickOnTrack={false}>
                 <Stack className="GhimTinnhan" spacing={2.4}>
                   <Typography variant="subtitle2" sx={{ color: "#67667" }}>
@@ -93,6 +106,9 @@ const GroupChat = () => {
 
         {/* Right */}
       </Stack>
+      {openDialog && (
+        <CreateGroup open={openDialog} handleClose={handleCloseDialog} />
+      )}
     </>
   );
 };
