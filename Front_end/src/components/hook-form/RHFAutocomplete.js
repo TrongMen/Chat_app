@@ -2,12 +2,13 @@ import PropTypes from "prop-types";
 import { useFormContext, Controller } from "react-hook-form";
 import { TextField } from "@mui/material";
 
-RHFTextField.propTypes = {
+RHFAutocomplete.propTypes = {
   name: PropTypes.string,
+  label: PropTypes.string,
   helperText: PropTypes.node,
 };
 
-export default function RHFTextField({ name, helperText, ...other }) {
+export default function RHFAutocomplete({ name, helperText, ...other }) {
   const { control } = useFormContext();
   return (
     <Controller
