@@ -35,6 +35,7 @@ export default function Router() {
         { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
         { path: "app", element: <GeneralApp /> },
         { path: "group", element: <GroupPage /> },
+        { path: "call", element: <CallPage /> },
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
       ],
@@ -54,5 +55,8 @@ const ResetPasswordPage = Loadable(
 const NewPasswordPage = Loadable(
   lazy(() => import("../pages/auth/NewPassword"))
 );
+
+const CallPage = Loadable(lazy(() => import("../pages/dashboard/Call")));
+
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/GroupChat")));
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
