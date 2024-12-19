@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   Button,
   Divider,
@@ -9,14 +8,15 @@ import {
 } from "@mui/material";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
 import React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { ChatList } from "../../data";
 import { SimpleBarStyle } from "../../components/Scrollbar";
-import { Search, SearchInconWrapper, StyledInputBase } from "../../components/Search";
+import {
+  Search,
+  SearchInconWrapper,
+  StyledInputBase,
+} from "../../components/Search";
 import ChatElement from "../../components/ChatElement";
-
-
-
 
 const Chats = () => {
   const theme = useTheme();
@@ -28,8 +28,7 @@ const Chats = () => {
         backgroundColor:
           theme.palette.mode === "light"
             ? "#F8FAFF"
-          
-            : theme.palette.background.paper, //vừa sửa paper 
+            : theme.palette.background.paper, //vừa sửa paper
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
       }}
     >
@@ -81,7 +80,7 @@ const Chats = () => {
                 Tin nhắn
               </Typography>
               {ChatList.filter((el) => !el.pinned).map((el) => {
-                return <ChatElement  key={el.id} {...el} />;
+                return <ChatElement key={el.id} {...el} />;
               })}
             </Stack>
           </SimpleBarStyle>
