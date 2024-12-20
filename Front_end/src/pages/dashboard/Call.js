@@ -13,6 +13,7 @@ import { SimpleBarStyle } from "../../components/Scrollbar";
 import { ChatList } from "../../data";
 import ChatElement from "../../components/ChatElement";
 import { Search, SearchInconWrapper, StyledInputBase } from '../../components/Search';
+import { CallLogElement } from '../../components/CallElement';
 
 const Call = () => {
   return (
@@ -75,9 +76,8 @@ const Call = () => {
                   <Typography variant="subtitle2" sx={{ color: "#67667" }}>
                     Danh sách cuộc gọi
                   </Typography>
-                  {ChatList.filter((el) => !el.pinned).map((el) => {
-                    return <ChatElement key={el.id} {...el} />;
-                  })}
+                  {/* Call log */}
+                  <CallLogElement />
                 </Stack>
               </SimpleBarStyle>
             </Stack>
