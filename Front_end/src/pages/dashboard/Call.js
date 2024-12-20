@@ -77,7 +77,7 @@ const Call = () => {
                     Danh sách cuộc gọi
                   </Typography>
                   {/* Call log */}
-                  <CallLogElement />
+                  <CallLogElement online={true} />
                 </Stack>
               </SimpleBarStyle>
             </Stack>
