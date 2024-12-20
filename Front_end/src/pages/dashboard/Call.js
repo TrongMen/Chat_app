@@ -1,4 +1,18 @@
 import React from 'react'
+import {
+  Box,
+  Divider,
+  IconButton,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { MagnifyingGlass, Plus } from "phosphor-react";
+// import { useTheme } from "@mui/material/styles";
+import { SimpleBarStyle } from "../../components/Scrollbar";
+import { ChatList } from "../../data";
+import ChatElement from "../../components/ChatElement";
+import { Search, SearchInconWrapper, StyledInputBase } from '../../components/Search';
 
 const Call = () => {
   return (
@@ -39,16 +53,16 @@ const Call = () => {
               justifyContent={"space-between"}
             >
               <Typography variant="subtitle2" component={Link}>
-                Tạo nhóm
+                Nhật ký cuộc gọi
               </Typography>
               <IconButton
-                onClick={() => {
-                  setOpenDialog(true);
-                }}
+                // onClick={() => {
+                //   setOpenDialog(true);
+                // }}
               >
-                <Plus
+                {/* <Plus
                   style={{ color: (theme) => theme.palette.primary.main }}
-                />
+                /> */}
               </IconButton>
             </Stack>
             <Divider />
