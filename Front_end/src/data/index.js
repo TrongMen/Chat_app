@@ -49,6 +49,34 @@ const Nav_Setting = [
   },
 ];
 
+const MembersList = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    
+  },
+
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    
+  },
+];
+
 const CallLogs = [
   {
     id: 0,
@@ -345,4 +373,5 @@ export {
   SHARED_LINKS,
   SHARED_DOCS,
   CallLogs,
+  MembersList,
 };
