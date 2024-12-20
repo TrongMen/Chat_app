@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Avatar, Box, Stack } from "@mui/material";
+import { Avatar, Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import StyledBadge from "./StyledBadge";
 
@@ -21,7 +21,9 @@ const CallLogElement = ({online}) => {
         direction={"row"}
         alignItems={"center"}
         justifyContent={"space-between"}
+        className="TongTheCuaCallLogElement"
       >
+        <Stack className="tungItemcuaChatLogElement"></Stack>
         {online ? (
           <StyledBadge
             overlap="circular"
@@ -33,6 +35,10 @@ const CallLogElement = ({online}) => {
         ) : (
           <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} />
         )}
+         <Stack spacing={0.3}>
+              <Typography variant="subtitle2">{faker.name.fullName()}</Typography>
+              <Typography variant="caption">{msg} </Typography>
+            </Stack>
       </Stack>
     </Box>
   );
