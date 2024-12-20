@@ -1,8 +1,19 @@
-import { Dialog, DialogContent, DialogTitle, Slide, Stack } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Slide,
+  Stack,
+} from "@mui/material";
 import React from "react";
-import { Search, SearchInconWrapper, StyledInputBase } from "../../components/Search";
+import {
+  Search,
+  SearchInconWrapper,
+  StyledInputBase,
+} from "../../components/Search";
 import { MagnifyingGlass } from "phosphor-react";
 import { CallElement } from "../../components/CallElement";
+import { MembersList } from "../../data";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -21,20 +32,23 @@ const StartCall = ({ open, handleClose }) => {
       {/* Content */}
       <DialogContent>
         {/* Form */}
-        <Stack sx={{ width: "100%" }} className="ThanhTimKiem">
-          <Search>
-            <SearchInconWrapper>
-              <MagnifyingGlass color="#709CE6" />
-            </SearchInconWrapper>
-            <StyledInputBase
-              placeholder="Nhập tên bạn bè ..."
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+        <Stack spacing={2}>
+          <Stack sx={{ width: "100%" }} className="ThanhTimKiem">
+            <Search>
+              <SearchInconWrapper>
+                <MagnifyingGlass color="#709CE6" />
+              </SearchInconWrapper>
+              <StyledInputBase
+                placeholder="Nhập tên bạn bè ..."
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          </Stack>
+          {/* Call List */}
+          {MembersList.map((el) => (
+            <CallElement {...el} />
+          ))}
         </Stack>
-        {/* Call List */}
-        <CallElement />
-        {/* <CreateGroupForm handleClose={handleClose} /> */}
       </DialogContent>
     </Dialog>
   );

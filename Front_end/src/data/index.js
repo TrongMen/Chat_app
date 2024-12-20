@@ -54,26 +54,26 @@ const MembersList = [
     id: 0,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
-    
+    online: true,
   },
 
   {
     id: 1,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
-    
+    online: false,
   },
   {
     id: 2,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
-    
+    online: true,
   },
   {
     id: 3,
     img: faker.image.avatar(),
     name: faker.name.firstName(),
-    
+    online: false,
   },
 ];
 
