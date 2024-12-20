@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   Box,
   Divider,
@@ -10,15 +10,25 @@ import {
 import { MagnifyingGlass, Plus } from "phosphor-react";
 // import { useTheme } from "@mui/material/styles";
 import { SimpleBarStyle } from "../../components/Scrollbar";
-import { ChatList } from "../../data";
-import ChatElement from "../../components/ChatElement";
-import { Search, SearchInconWrapper, StyledInputBase } from '../../components/Search';
-import { CallLogElement } from '../../components/CallElement';
+import { CallLogs } from "../../data";
+
+import {
+  Search,
+  SearchInconWrapper,
+  StyledInputBase,
+} from "../../components/Search";
+import { CallLogElement } from "../../components/CallElement";
+import StartCall from "../../sections/main/StartCall";
 
 const Call = () => {
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
   return (
     <>
-    <Stack direction={"row"} sx={{ width: "100%" }}>
+      <Stack direction={"row"} sx={{ width: "100%" }}>
         {/* Left */}
         <Box
           sx={{
@@ -36,7 +46,7 @@ const Call = () => {
               <Typography variant="h5">Nhóm</Typography>
             </Stack>
 
-            <Stack sx={{ width: "100%" }} className="ThanhTimKiem"> 
+            <Stack sx={{ width: "100%" }} className="ThanhTimKiem">
               <Search>
                 <SearchInconWrapper>
                   <MagnifyingGlass color="#709CE6" />
@@ -57,13 +67,13 @@ const Call = () => {
                 Nhật ký cuộc gọi
               </Typography>
               <IconButton
-                // onClick={() => {
-                //   setOpenDialog(true);
-                // }}
+                onClick={() => {
+                  setOpenDialog(true);
+                }}
               >
-                {/* <Plus
+                <Plus
                   style={{ color: (theme) => theme.palette.primary.main }}
-                /> */}
+                />
               </IconButton>
             </Stack>
             <Divider />
@@ -77,7 +87,9 @@ const Call = () => {
                     Danh sách cuộc gọi
                   </Typography>
                   {/* Call log */}
-                  <CallLogElement online={true} />
+                  {CallLogs.map((el) => (
+                    <CallLogElement {...el} />
+                  ))}
                 </Stack>
               </SimpleBarStyle>
             </Stack>
@@ -86,8 +98,11 @@ const Call = () => {
 
         {/* Right */}
       </Stack>
+      {openDialog && (
+        <StartCall open={openDialog} handleClose={handleCloseDialog} />
+      )}
     </>
-  )
-}
+  );
+};
 
-export default Call
+export default Call;

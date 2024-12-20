@@ -49,6 +49,44 @@ const Nav_Setting = [
   },
 ];
 
+const CallLogs = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: false,
+    incoming: true,
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: false,
+    incoming: false,
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: true,
+    incoming: false,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: true,
+    incoming: true,
+  },
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: false,
+    incoming: false,
+  },
+];
+
 const ChatList = [
   {
     id: 0,
@@ -223,7 +261,7 @@ const Message_options = [
   },
 ];
 
-const SHARED_LINKS =[
+const SHARED_LINKS = [
   {
     id: 1,
     type: "msg",
@@ -262,7 +300,7 @@ const SHARED_LINKS =[
   },
 ];
 
-const SHARED_DOCS =[
+const SHARED_DOCS = [
   {
     id: 1,
     type: "msg",
@@ -270,21 +308,24 @@ const SHARED_DOCS =[
     message: "Yes sure, here you go.",
     incoming: true,
     outgoing: false,
-  },{
+  },
+  {
     id: 2,
     type: "msg",
     subtype: "doc",
     message: "Yes sure, here you go.",
     incoming: true,
     outgoing: false,
-  },{
+  },
+  {
     id: 3,
     type: "msg",
     subtype: "doc",
     message: "Yes sure, here you go.",
     incoming: true,
     outgoing: false,
-  },{
+  },
+  {
     id: 4,
     type: "msg",
     subtype: "doc",
@@ -303,4 +344,5 @@ export {
   Message_options,
   SHARED_LINKS,
   SHARED_DOCS,
+  CallLogs,
 };
