@@ -16,9 +16,25 @@ import useSettings from "../../hooks/useSettings";
 import { faker } from "@faker-js/faker";
 import Logo from "../../assets/Images/logo.ico";
 import AntSwitch from "../../components/AntSwitch";
+import { useNavigate } from "react-router-dom";
 
+const getPath = (index) => {
+  switch (index) {
+    case 0:
+      return "/app";
+
+    case 1:
+      return "/group";
+    case 2:
+      return "/call";
+
+    default:
+      break;
+  }
+};
 const SideBar = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
 
@@ -73,7 +89,7 @@ const SideBar = () => {
             {Nav_Buttons.map((el) =>
               el.index === selected ? (
                 <Box
-                key={el.index} 
+                  key={el.index}
                   p={1}
                   sx={{
                     backgroundColor: theme.palette.primary.main,
@@ -89,8 +105,10 @@ const SideBar = () => {
                 </Box>
               ) : (
                 <IconButton
-                
-                  onClick={() => setSelected(el.index)}
+                  onClick={() => {
+                    setSelected(el.index);
+                    navigate(getPath(el.index));
+                  }}
                   sx={{
                     width: "max-content",
                     color:
@@ -118,18 +136,19 @@ const SideBar = () => {
                 </IconButton>
               </Box>
             ) : (
-              <IconButton
-                onClick={() => setSelected(3)}
-                sx={{
-                  width: "max-content",
-                  color:
-                    theme.palette.mode === "Light"
-                      ? "#000"
-                      : theme.palette.text.primary,
-                }}
-              >
-                <Gear />
-              </IconButton>
+              <Stack></Stack>
+              // <IconButton
+              //   onClick={() => setSelected(3)}
+              //   sx={{
+              //     width: "max-content",
+              //     color:
+              //       theme.palette.mode === "Light"
+              //         ? "#000"
+              //         : theme.palette.text.primary,
+              //   }}
+              // >
+              //   <Gear />
+              // </IconButton>
             )}
           </Stack>
         </Stack>
@@ -157,13 +176,12 @@ const SideBar = () => {
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
-
             transformOrigin={{ vertical: "bottom", horizontal: "left" }}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((el) => (
-                <MenuItem  key={el.id}  onClick={handleClick}>
+                <MenuItem key={el.id} onClick={handleClick}>
                   <Stack
                     sx={{ width: 100 }}
                     direction={"row"}
