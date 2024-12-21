@@ -1,7 +1,7 @@
 import { Avatar, Badge, Box, Stack, Typography } from "@mui/material";
 import StyledBadge from "./StyledBadge";
 import { faker } from "@faker-js/faker";
-import { styled, useTheme } from "@mui/material/styles";
+import {  useTheme } from "@mui/material/styles";
 
   
 const ChatElement = ({ id, name, img, msg, time, unread, online }) => {

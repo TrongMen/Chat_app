@@ -167,6 +167,13 @@ const Contact = () => {
           </Stack>
           <Divider />
           <Stack
+           spacing={2}
+          >
+            <Typography variant="article">Mô tả</Typography>
+            <Typography variant="body2">Hoạt bát vui vẻ</Typography>
+          </Stack>
+          <Divider />
+          <Stack
             direction={"row"}
             alignItems={"center"}
             justifyContent={"space-between"}
