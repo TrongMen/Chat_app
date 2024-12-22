@@ -17,6 +17,16 @@ const session = require("cookie-session");
 
 const app = express();
 
+// app.use(
+//   express.urlencoded({
+//     extended: true,
+//   })
+// );
+
+// app.use(mongosanitize());
+
+// app.use(xss());
+
 app.use(
   cors({
     origin: "*",

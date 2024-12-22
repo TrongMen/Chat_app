@@ -1,0 +1,8 @@
+Thực hiện:
+1. npm install mongoose
+2. npm install cross-env --save-dev
+3. npm install -g nodemon
+
+4. "scripts": {
+  "start": "cross-env NODE_ENV=development nodemon server.js"
+}
