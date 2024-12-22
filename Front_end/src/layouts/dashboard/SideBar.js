@@ -39,8 +39,7 @@ const getMenuPath = (index) => {
       return "/profile";
     case 1:
       return "/auth/login";
-    
-      
+
     default:
       break;
   }
@@ -193,12 +192,15 @@ const SideBar = () => {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <Stack spacing={1} px={1}>
-              {Profile_Menu.map((el,idx) => (
-                <MenuItem key={el.id} onClick={() => {
-                  handleClick();
-                  navigate(getMenuPath(idx));
-                }}>
+              {Profile_Menu.map((el, idx) => (
+                <MenuItem key={el.id} onClick={() => handleClick}>
                   <Stack
+                    onClick={() => {
+                      navigate(getMenuPath(idx));
+                    }}
+                    // onClick={() => {
+                    //   navigate(getMenuPath(idx));
+                    // }}
                     sx={{ width: 100 }}
                     direction={"row"}
                     alignItems={"center"}
