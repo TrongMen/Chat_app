@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
+// Thêm dòng này để loại bỏ cảnh báo của Mongoose
 mongoose.set('strictQuery', true);
+
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
