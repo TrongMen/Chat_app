@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set('strictQuery', true);
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
@@ -6,7 +7,7 @@ dotenv.config({ path: "./config.env" });
 process.on("uncaughtException", (err) => {
   console.log(err);
   console.log("UNCAUGHT Exception! Shutting down ...");
-  process.exit(1); // Exit Code 1 indicates that a container shut down, either because of an application failure.
+  process.exit(1); 
 });
 
 const app = require("./app");
@@ -14,7 +15,7 @@ const app = require("./app");
 const http = require("http");
 const server = http.createServer(app);
 
-const { Server } = require("socket.io"); // Add this
+const { Server } = require("socket.io"); 
 const { promisify } = require("util");
 const User = require("./models/user");
 const FriendRequest = require("./models/friendRequest");
@@ -22,7 +23,7 @@ const OneToOneMessage = require("./models/OneToOneMessage");
 const AudioCall = require("./models/audioCall");
 const VideoCall = require("./models/videoCall");
 
-// Add this
+
 // Create an io server and allow for CORS from http://localhost:3000 with GET and POST methods
 const io = new Server(server, {
   cors: {
@@ -72,7 +73,7 @@ io.on("connection", async (socket) => {
     }
   }
 
-  // We can write our socket event listeners in here...
+
   socket.on("friend_request", async (data) => {
     const to = await User.findById(data.to).select("socket_id");
     const from = await User.findById(data.from).select("socket_id");
