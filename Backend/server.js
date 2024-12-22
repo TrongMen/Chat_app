@@ -47,7 +47,7 @@ mongoose
     // useUnifiedTopology: true, // Set to true to opt in to using the MongoDB driver's new connection management engine. You should set this option to true , except for the unlikely case that it prevents you from maintaining a stable connection.
   })
   .then((con) => {
-    console.log("DB Connection successful");
+    console.log("Kết nối DB thành công"); 
   });
 
 const port = process.env.PORT || 8000;
