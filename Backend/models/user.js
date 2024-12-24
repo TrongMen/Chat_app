@@ -32,19 +32,15 @@ const userSchema = new mongoose.Schema({
     },
   },
   password: {
-    // unselect
     type: String,
   },
   passwordChangedAt: {
-    // unselect
     type: Date,
   },
   passwordResetToken: {
-    // unselect
     type: String,
   },
   passwordResetExpires: {
-    // unselect
     type: Date,
   },
   createdAt: {
@@ -52,7 +48,6 @@ const userSchema = new mongoose.Schema({
     default: Date.now(),
   },
   updatedAt: {
-    // unselect
     type: Date,
   },
   verified: {
@@ -91,13 +86,11 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.pre("save", async function (next) {
-  // Only run this function if password was actually modified
   if (!this.isModified("password") || !this.password) return next();
 
-  // Hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
 
-  //! Shift it to next hook // this.passwordChangedAt = Date.now() - 1000;
+  // ! Shift it to next hook // this.passwordChangedAt = Date.now() - 1000;
 
   next();
 });
