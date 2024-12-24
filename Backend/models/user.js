@@ -5,11 +5,11 @@ const crypto = require("crypto");
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, "First Name is required"],
+    required: [true, "Tên không được để trống"],
   },
   lastName: {
     type: String,
-    required: [true, "Last Name is required"],
+    required: [true, "Họ không được để trống"],
   },
   about: {
     type: String,
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, "Email is required"],
+    required: [true, "Email không được để trống"],
     validate: {
       validator: function (email) {
         return String(email)
@@ -72,19 +72,17 @@ const userSchema = new mongoose.Schema({
     },
   ],
   socket_id: {
-    type: String
+    type: String,
   },
   status: {
     type: String,
-    enum: ["Online", "Offline"]
-  }
+    enum: ["Online", "Offline"],
+  },
 });
 
 userSchema.pre("save", async function (next) {
-  // Only run this function if password was actually modified
   if (!this.isModified("otp") || !this.otp) return next();
 
-  // Hash the otp with cost of 12
   this.otp = await bcrypt.hash(this.otp.toString(), 12);
 
   console.log(this.otp.toString(), "FROM PRE SAVE HOOK");
