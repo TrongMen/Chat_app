@@ -17,8 +17,6 @@ const signToken = (userId) => jwt.sign({ userId }, process.env.JWT_SECRET);
 
 // Register New User
 
-
-
 exports.register = catchAsync(async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
 
@@ -33,14 +31,11 @@ exports.register = catchAsync(async (req, res, next) => {
   const existing_user = await User.findOne({ email: email });
 
   if (existing_user && existing_user.verified) {
-
     return res.status(400).json({
       status: "error",
       message: "Email already in use, Please login.",
     });
   } else if (existing_user) {
-
-
     await User.findOneAndUpdate({ email: email }, filteredBody, {
       new: true,
       validateModifiedOnly: true,
@@ -49,7 +44,6 @@ exports.register = catchAsync(async (req, res, next) => {
     req.userId = existing_user._id;
     next();
   } else {
-
     const new_user = await User.create(filteredBody);
 
     req.userId = new_user._id;
