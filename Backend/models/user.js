@@ -34,6 +34,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  passwordConfirm: {
+    type: String,
+  },
   passwordChangedAt: {
     type: Date,
   },
@@ -116,17 +119,20 @@ userSchema.methods.correctOTP = async function (candidateOTP, userOTP) {
   return await bcrypt.compare(candidateOTP, userOTP);
 };
 
-userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
-  if (this.passwordChangedAt) {
-    const changedTimeStamp = parseInt(
-      this.passwordChangedAt.getTime() / 1000,
-      10
-    );
-    return JWTTimeStamp < changedTimeStamp;
-  }
+// userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
+//   if (this.passwordChangedAt) {
+//     const changedTimeStamp = parseInt(
+//       this.passwordChangedAt.getTime() / 1000,
+//       10
+//     );
+//     return JWTTimeStamp < changedTimeStamp;
+//   }
 
-  // FALSE MEANS NOT CHANGED
-  return false;
+//   // FALSE MEANS NOT CHANGED
+//   return false;
+// };
+userSchema.methods.changedPasswordAfter = function (timestamp) {
+  return timestamp > this.passwordChangedAt;
 };
 
 userSchema.methods.createPasswordResetToken = function () {
