@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === "development") {
 
 const limiter = rateLimit({
   max: 3000,
-  windowMs: 60 * 60 * 1000, // In one hour
+  windowMs: 60 * 60 * 1000, 
   message: "Quá nhiều request từ IP của bạn, hãy thử lại sau 1 giờ",
 });
 
