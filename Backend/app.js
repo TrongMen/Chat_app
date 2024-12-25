@@ -69,16 +69,16 @@ const limiter = rateLimit({
 
 app.use("/tawk", limiter);
 
-// app.use(
-//   express.urlencoded({
-//     extended: true,
-//   })
-// );
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
-// app.use(mongosanitize());
+app.use(mongosanitize());
 
-// app.use(xss());
+app.use(xss());
 
-// app.use(routes);
+app.use(routes);
 
 module.exports = app;

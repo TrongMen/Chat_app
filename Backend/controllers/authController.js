@@ -113,7 +113,7 @@ exports.verifyOTP = catchAsync(async (req, res, next) => {
       message: "OTP is incorrect",
     });
 
-    // return;
+    return;
   }
 
   // OTP is correct
