@@ -28,6 +28,13 @@ coverage
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+
+# Nodemon 
+nodemon.json
+
+# Config file
+config.env
+
 # Bower dependency directory (https://bower.io/)
 bower_components
 
@@ -106,5 +113,3 @@ dist
 client/src/components/twilio-video-starter-kit
 .DS_Store
 
-# Nodemon 
-nodemon.json
