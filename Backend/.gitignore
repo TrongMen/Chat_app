@@ -29,11 +29,6 @@ coverage
 .grunt
 
 
-# Nodemon 
-nodemon.json
-
-# Config file
-config.env
 
 # Bower dependency directory (https://bower.io/)
 bower_components
@@ -113,3 +108,8 @@ dist
 client/src/components/twilio-video-starter-kit
 .DS_Store
 
+# Nodemon 
+nodemon.json
+
+# Config file
+config.env
