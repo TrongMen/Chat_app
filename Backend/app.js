@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 
-// const routes = require("./routes/index");
+const routes = require("./routes/index");
 
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");

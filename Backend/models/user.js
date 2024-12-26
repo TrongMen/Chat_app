@@ -95,7 +95,7 @@ userSchema.pre("save", async function (next) {
   // Hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
 
-  // ! Shift it to next hook // this.passwordChangedAt = Date.now() - 1000;
+  // Shift it to next hook // this.passwordChangedAt = Date.now() - 1000;
 
   next();
 });
@@ -119,21 +119,21 @@ userSchema.methods.correctOTP = async function (candidateOTP, userOTP) {
   return await bcrypt.compare(candidateOTP, userOTP);
 };
 
-// userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
-//   if (this.passwordChangedAt) {
-//     const changedTimeStamp = parseInt(
-//       this.passwordChangedAt.getTime() / 1000,
-//       10
-//     );
-//     return JWTTimeStamp < changedTimeStamp;
-//   }
+userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
+  if (this.passwordChangedAt) {
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return JWTTimeStamp < changedTimeStamp;
+  }
 
-//   // FALSE MEANS NOT CHANGED
-//   return false;
-// };
-userSchema.methods.changedPasswordAfter = function (timestamp) {
-  return timestamp > this.passwordChangedAt;
+  // FALSE MEANS NOT CHANGED
+  return false;
 };
+// userSchema.methods.changedPasswordAfter = function (timestamp) {
+//   return timestamp > this.passwordChangedAt;
+// };
 
 userSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");

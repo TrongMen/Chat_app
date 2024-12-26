@@ -111,5 +111,4 @@ client/src/components/twilio-video-starter-kit
 # Nodemon 
 nodemon.json
 
-# Config file
-config.env
+
