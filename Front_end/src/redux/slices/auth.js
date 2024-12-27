@@ -29,7 +29,7 @@ export function LoginUser(formValues) {
   return async (dispatch, getState) => {
     await axios
       .post(
-        "http://localhost:3001/auth/login",
+        "/auth/login",
         {
           ...formValues,
         },
@@ -37,6 +37,7 @@ export function LoginUser(formValues) {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       )
       .then(function (response) {

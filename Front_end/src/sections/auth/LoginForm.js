@@ -28,8 +28,8 @@ const LoginForm = () => {
   });
 
   const defaultValues = {
-    email: "abc@gmail.com",
-    password: "123",
+    email: "",
+    password: "",
   };
 
   const methods = useForm({
@@ -60,10 +60,10 @@ const LoginForm = () => {
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
 
-        <RHFTextField name={"Email"} label="Nhập địa chỉ email" />
+        <RHFTextField name={"email"} label="Nhập địa chỉ email" />
         <RHFTextField
-          name={"Mật khẩu"}
-          label="Nhập mật khẩu"
+          name={"password"}
+          label="Nhập mật khẩu"h
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
