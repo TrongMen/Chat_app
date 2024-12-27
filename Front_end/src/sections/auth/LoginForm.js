@@ -81,7 +81,12 @@ const LoginForm = () => {
         />
       </Stack>
       <Stack alignItems={"flex-end"} sx={{ my: 2 }} p={1}>
-        <Link component={RouterLink} variant="body2" color={"inherit"} to={"/auth/reset-password"}>
+        <Link
+          component={RouterLink}
+          variant="body2"
+          color={"inherit"}
+          to={"/auth/reset-password"}
+        >
           Quên mật khẩu ?
         </Link>
       </Stack>

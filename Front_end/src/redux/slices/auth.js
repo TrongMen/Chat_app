@@ -15,7 +15,7 @@ const slice = createSlice({
       state.isLoggedIn = action.payload.isLoggedIn;
       state.token = action.payload.token;
     },
-    logOut(state, action) {
+    signOut(state, action) {
       state.isLoggedIn = false;
       state.token = "";
     },
@@ -29,7 +29,7 @@ export function LoginUser(formValues) {
   return async (dispatch, getState) => {
     await axios
       .post(
-        "/auth/login",
+        "http://localhost:3001/auth/login",
         {
           ...formValues,
         },

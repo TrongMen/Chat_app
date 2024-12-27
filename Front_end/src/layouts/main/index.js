@@ -2,12 +2,14 @@ import { Container, Stack } from "@mui/material";
 import React from "react";
 import { Outlet,Navigate } from "react-router-dom";
 import BG from "../../assets/Images/BG1.jpeg";
+import { useSelector } from "react-redux";
 
-// const isAuthenticated = true;
+
 const MainLayout = () => {
-  // if(isAuthenticated){
-  //   return <Navigate to={"/app"}/>
-  // }
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  if(isLoggedIn){
+    return <Navigate to={"/app"}/>;
+  }
 
   return (
     <>
