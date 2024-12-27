@@ -3,11 +3,11 @@ import React from "react";
 import { Outlet,Navigate } from "react-router-dom";
 import BG from "../../assets/Images/BG1.jpeg";
 
-const isAuthenticated = true;
+// const isAuthenticated = true;
 const MainLayout = () => {
-  if(isAuthenticated){
-    return <Navigate to={"/app"}/>
-  }
+  // if(isAuthenticated){
+  //   return <Navigate to={"/app"}/>
+  // }
 
   return (
     <>
