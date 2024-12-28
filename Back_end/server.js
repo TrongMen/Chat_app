@@ -19,11 +19,11 @@ const server = http.createServer(app);
 
 const { Server } = require("socket.io"); 
 const { promisify } = require("util");
-// const User = require("./models/user");
-// const FriendRequest = require("./models/friendRequest");
-// const OneToOneMessage = require("./models/OneToOneMessage");
-// const AudioCall = require("./models/audioCall");
-// const VideoCall = require("./models/videoCall");
+const User = require("./models/user");
+const FriendRequest = require("./models/friendRequest");
+const OneToOneMessage = require("./models/OneToOneMessage");
+const AudioCall = require("./models/audioCall");
+const VideoCall = require("./models/videoCall");
 
 
 // Create an io server and allow for CORS from http://localhost:3000 with GET and POST methods

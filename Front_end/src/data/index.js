@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import {
   ChatCircleDots,
-  Gear,
+  // Gear,
   GearSix,
   Phone,
   SignOut,
@@ -15,13 +15,13 @@ const Profile_Menu = [
     title: "Hồ sơ",
     icon: <User />,
   },
+  // {
+  //   id: 1,
+  //   title: "Cài đặt",
+  //   icon: <Gear />,
+  // },
   {
     id: 1,
-    title: "Cài đặt",
-    icon: <Gear />,
-  },
-  {
-    id: 2,
     title: "Đăng xuất",
     icon: <SignOut />,
   },
