@@ -60,3 +60,28 @@ export function LogoutUser(){
     dispatch(slice.actions.signOut());
   }
 }
+
+
+export function ForgotPassword(formValues) {
+  return async(dispatch, getState) => {
+    await axios
+      .post(
+        "/auth/forgot-password",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}

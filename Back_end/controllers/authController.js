@@ -199,7 +199,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     console.log(resetURL);
 
     mailService.sendEmail({
-      from: "shreyanshshah242@gmail.com",
+      from: "menht8602@gmail.com",
       to: user.email,
       subject: "Reset Password",
       html: resetPassword(user.firstName, resetURL),
