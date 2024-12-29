@@ -10,7 +10,7 @@ const RHFCode = ({ keyName = "", inputs = [], ...other }) => {
     const fieldIndex = name.replace(keyName, "");
     const fieldIntIndex = Number(fieldIndex);
     const nextField = document.querySelector(
-      `input[name=${keyName}${fieldIntIndex}]`
+      `input[name=${keyName}${fieldIntIndex+1}]`
     );
     if (value.length > maxLength) {
       event.target.value = value[0];
@@ -18,7 +18,7 @@ const RHFCode = ({ keyName = "", inputs = [], ...other }) => {
     if (value.length >= maxLength && fieldIntIndex < 6 && nextField !== null) {
       nextField.focus();
     }
-    handleChange();
+    handleChange(event);
   };
   return (
     <Stack
@@ -38,7 +38,9 @@ const RHFCode = ({ keyName = "", inputs = [], ...other }) => {
               error={!!error}
               autoFocus={index === 0}
               placeholder={"-"}
-              onChange={(event) => {}}
+              onChange={(event) => {
+                handleChangeWithNextField(event, field.onChange);
+              }}
               onFocus={(event) => event.currentTarget.select()}
               InputProps={{
                 sx: {
