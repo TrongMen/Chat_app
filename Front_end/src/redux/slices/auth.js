@@ -2,15 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
 
 const initialState = {
+  isLoading: false,
   isLoggedIn: false,
   token: "",
-  isLoading: false,
+  email: "",
+  error: false,
 };
 
 const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    updateIsLoading(state, action) {
+      state.error = action.payload.error;
+      state.isLoading = action.payload.isLoading;
+    },
     logIn(state, action) {
       state.isLoggedIn = action.payload.isLoggedIn;
       state.token = action.payload.token;
@@ -18,6 +24,9 @@ const slice = createSlice({
     signOut(state, action) {
       state.isLoggedIn = false;
       state.token = "";
+    },
+    updateRegisterEmail(state, action) {
+      state.email = action.payload.email;
     },
   },
 });
@@ -55,15 +64,14 @@ export function LoginUser(formValues) {
   };
 }
 
-export function LogoutUser(){
-  return async(dispatch, getState) => {
+export function LogoutUser() {
+  return async (dispatch, getState) => {
     dispatch(slice.actions.signOut());
-  }
+  };
 }
 
-
 export function ForgotPassword(formValues) {
-  return async(dispatch, getState) => {
+  return async (dispatch, getState) => {
     await axios
       .post(
         "/auth/forgot-password",
@@ -86,11 +94,10 @@ export function ForgotPassword(formValues) {
   };
 }
 
-
 export function NewPW(formValues) {
-  return async(dispatch, getState) => {
+  return async (dispatch, getState) => {
     console.log(formValues);
-    
+
     await axios
       .post(
         "/auth/reset-password",
@@ -101,15 +108,16 @@ export function NewPW(formValues) {
           headers: {
             "Content-Type": "application/json",
           },
-        
         }
       )
       .then(function (response) {
         console.log(response);
-        dispatch(slice.actions.logIn({
-          isLoggedIn: true,
-          token: response.data.token,
-        }))
+        dispatch(
+          slice.actions.logIn({
+            isLoggedIn: true,
+            token: response.data.token,
+          })
+        );
       })
       .catch(function (error) {
         console.log(error);
@@ -118,9 +126,15 @@ export function NewPW(formValues) {
 }
 
 export function RegisterUser(formValues) {
-  return async(dispatch, getState) => {
+  return async (dispatch, getState) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
     console.log(formValues);
-    
+
     await axios
       .post(
         "/auth/register",
@@ -131,28 +145,37 @@ export function RegisterUser(formValues) {
           headers: {
             "Content-Type": "application/json",
           },
-        
         }
       )
       .then(function (response) {
         console.log(response);
-        // dispatch(slice.actions.logIn({
-        //   isLoggedIn: true,
-        //   token: response.data.token,
-        // }))
+        dispatch(
+          slice.actions.updateRegisterEmail({
+            email: formValues.email,
+          })
+        );
+        dispatch(
+          slice.actions.updateIsLoading({
+            isLoading: false,
+            error: true,
+          })
+        );
       })
       .catch(function (error) {
         console.log(error);
-      }).finally( ()=> {
-        window.location.href = "/auth/verify";
+      })
+      .finally(() => {
+        if (!getState().auth.error) {
+          window.location.href = "/auth/verify";
+        }
       });
   };
 }
 
 export function VerifyEmail(formValues) {
-  return async(dispatch, getState) => {
+  return async (dispatch, getState) => {
     console.log(formValues);
-    
+
     await axios
       .post(
         "/auth/verify",
@@ -163,7 +186,6 @@ export function VerifyEmail(formValues) {
           headers: {
             "Content-Type": "application/json",
           },
-        
         }
       )
       .then(function (response) {
@@ -175,9 +197,9 @@ export function VerifyEmail(formValues) {
       })
       .catch(function (error) {
         console.log(error);
-      }).finally( ()=> {
+      })
+      .finally(() => {
         window.location.href = "/auth/verify";
       });
   };
 }
-
