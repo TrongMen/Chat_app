@@ -3,6 +3,8 @@ import FormProvider from "../../components/hook-form/FormProvider";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+
 
 import {
   Alert,
@@ -15,6 +17,7 @@ import {
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
 const NewPWForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = React.useState(false);
   const NewPWSchema = Yup.object().shape({
     
@@ -41,6 +44,8 @@ const NewPWForm = () => {
 
   const onSubmit = async (data) => {
     try {
+        //
+
     } catch (error) {
       console.log(error);
       reset();
