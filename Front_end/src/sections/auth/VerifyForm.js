@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import FormProvider from '../../components/hook-form/FormProvider';
 import { Button, Stack } from '@mui/material';
 import { yupResolver } from "@hookform/resolvers/yup";
+import RHFCode from '../../components/hook-form/RHFCode';
 const VerifyForm = () => {
     const VerifyCodeSchema =Yup.object().shape({
         code1: Yup.string().required("Nhập mã OTP"),
@@ -41,6 +42,7 @@ const VerifyForm = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
+            <RHFCode keyName="code" inputs={["code1","code2","code3","code4","code5","code6"]}/>
         <Stack p={1}>
         <Button
           fullWidth

@@ -20,9 +20,10 @@ const Verify = () => {
       <Stack direction={"row"} spacing={0.5}>
         <Typography variant="body2">OTP đã gửi đến email của bạn</Typography>
       </Stack>
-    </Stack>
+    
     {/* Verify Form */}
     <VerifyForm/>
+    </Stack>
     </>
   );
 };

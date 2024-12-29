@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import React, { useRef } from "react";
-import { Controller } from "react-hook-form";
-
+import { useFormContext, Controller } from "react-hook-form";
+import { TextField } from "@mui/material";
 const RHFCode = ({ keyName = "", inputs = [], ...other }) => {
   const codesRef = useRef(null);
   const { control } = useFormContext();
@@ -23,7 +23,8 @@ const RHFCode = ({ keyName = "", inputs = [], ...other }) => {
               error={!!error}
               autoFocus={index === 0}
               placeholder={"-"}
-              otherField={(event) => {}}
+              otherChange={(event) => {}}
+              
             />
           )}
         ></Controller>
