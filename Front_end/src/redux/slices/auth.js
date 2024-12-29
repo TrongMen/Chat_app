@@ -157,12 +157,18 @@ export function RegisterUser(formValues) {
         dispatch(
           slice.actions.updateIsLoading({
             isLoading: false,
-            error: true,
+            error: false,
           })
         );
       })
       .catch(function (error) {
         console.log(error);
+        dispatch(
+          slice.actions.updateIsLoading({
+            isLoading: false,
+            error: true,
+          })
+        );
       })
       .finally(() => {
         if (!getState().auth.error) {
@@ -190,16 +196,15 @@ export function VerifyEmail(formValues) {
       )
       .then(function (response) {
         console.log(response);
-        dispatch(slice.actions.logIn({
-          isLoggedIn: true,
-          token: response.data.token,
-        }))
+        dispatch(
+          slice.actions.logIn({
+            isLoggedIn: true,
+            token: response.data.token,
+          })
+        );
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .finally(() => {
-        window.location.href = "/auth/verify";
       });
   };
 }

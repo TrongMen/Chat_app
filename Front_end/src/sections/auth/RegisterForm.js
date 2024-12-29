@@ -19,8 +19,8 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = React.useState(false);
   const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string().required("First Name is required"),
-    lastName: Yup.string().required("Last Name is required"),
+    firstName: Yup.string().required("Họ là bắt buộc"),
+    lastName: Yup.string().required("Tên là bắt buộc"),
     email: Yup.string()
       .required("Nhập email bắt buộc")
       .email("Email không hợp lệ"),
