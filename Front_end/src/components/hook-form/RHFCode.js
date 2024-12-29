@@ -10,7 +10,7 @@ const RHFCode = ({ keyName = "", inputs = [], ...other }) => {
     const fieldIndex = name.replace(keyName, "");
     const fieldIntIndex = Number(fieldIndex);
     const nextField = document.querySelector(
-      `input[name=${keyName}${fieldIntIndex+1}]`
+      `input[name=${keyName}${fieldIntIndex + 1}]`
     );
     if (value.length > maxLength) {
       event.target.value = value[0];
@@ -46,7 +46,11 @@ const RHFCode = ({ keyName = "", inputs = [], ...other }) => {
                 sx: {
                   width: { xs: 36, sm: 56 },
                   height: { xs: 36, sm: 56 },
-                  "& input": { p: 0, textAlign: "center" },
+                  "& input": { p: 0, textAlign: "center",outline: "none" },
+                  border: error ? "2px solid red" : "2px solid #808E9B", // Đổi màu khi lỗi
+                  borderRadius: "10px",
+            
+                  
                 },
               }}
               inputProps={{

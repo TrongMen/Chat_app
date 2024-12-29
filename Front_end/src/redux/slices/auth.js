@@ -117,3 +117,67 @@ export function NewPW(formValues) {
   };
 }
 
+export function RegisterUser(formValues) {
+  return async(dispatch, getState) => {
+    console.log(formValues);
+    
+    await axios
+      .post(
+        "/auth/register",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+        // dispatch(slice.actions.logIn({
+        //   isLoggedIn: true,
+        //   token: response.data.token,
+        // }))
+      })
+      .catch(function (error) {
+        console.log(error);
+      }).finally( ()=> {
+        window.location.href = "/auth/verify";
+      });
+  };
+}
+
+export function VerifyEmail(formValues) {
+  return async(dispatch, getState) => {
+    console.log(formValues);
+    
+    await axios
+      .post(
+        "/auth/verify",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+        // dispatch(slice.actions.logIn({
+        //   isLoggedIn: true,
+        //   token: response.data.token,
+        // }))
+      })
+      .catch(function (error) {
+        console.log(error);
+      }).finally( ()=> {
+        window.location.href = "/auth/verify";
+      });
+  };
+}
+

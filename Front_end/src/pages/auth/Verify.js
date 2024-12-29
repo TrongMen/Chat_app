@@ -16,9 +16,9 @@ const Verify = () => {
         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Typography variant="h4">Vui lòng nhập mã OTP</Typography>
+      <Typography variant="h3" p={1}>Vui lòng nhập mã OTP</Typography>
       <Stack direction={"row"} spacing={0.5}>
-        <Typography variant="body2">OTP đã gửi đến email của bạn</Typography>
+        <Typography variant="body2" p={1.5}>OTP đã gửi đến email của bạn</Typography>
       </Stack>
     
     {/* Verify Form */}
