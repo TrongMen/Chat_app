@@ -85,3 +85,35 @@ export function ForgotPassword(formValues) {
       });
   };
 }
+
+
+export function NewPW(formValues) {
+  return async(dispatch, getState) => {
+    console.log(formValues);
+    
+    await axios
+      .post(
+        "/auth/reset-password",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+        dispatch(slice.actions.logIn({
+          isLoggedIn: true,
+          token: response.data.token,
+        }))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+

@@ -5,29 +5,33 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 
-
 import {
   Alert,
   Button,
   IconButton,
   InputAdornment,
- 
   Stack,
 } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
+import { NewPW } from "../../redux/slices/auth";
+import { useSearchParams } from "react-router-dom";
 const NewPWForm = () => {
+  const [ queryParameters] = useSearchParams();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = React.useState(false);
   const NewPWSchema = Yup.object().shape({
-    
-    newPassword: Yup.string().min(6,"Mật khẩu ít nhất 6 ký tự").required("Nhập mật khẩu bắt buộc"),
-    confirmPassword: Yup.string().required("Nhập mật khẩu bắt buộc").oneOf([Yup.ref('newPassword'), null], 'Mật khẩu không khớp'),
+    password: Yup.string()
+      .min(6, "Mật khẩu ít nhất 6 ký tự")
+      .required("Nhập mật khẩu bắt buộc"),
+    passwordConfirm: Yup.string()
+      .required("Nhập mật khẩu bắt buộc")
+      .oneOf([Yup.ref("password"), null], "Mật khẩu không khớp"),
   });
 
   const defaultValues = {
-    newPassword: "",
-    confirmPassword: "",
+    password: "",
+    passwordConfirm: "",
   };
 
   const methods = useForm({
@@ -44,8 +48,8 @@ const NewPWForm = () => {
 
   const onSubmit = async (data) => {
     try {
-        //
-
+      //
+      dispatch(NewPW({...data,token:queryParameters.get("token")}));
     } catch (error) {
       console.log(error);
       reset();
@@ -59,9 +63,8 @@ const NewPWForm = () => {
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
 
-        
         <RHFTextField
-          name={"Mật khẩu mới"}
+          name={"password"}
           label="Nhập mật khẩu mới"
           type={showPassword ? "text" : "password"}
           InputProps={{
@@ -78,8 +81,8 @@ const NewPWForm = () => {
             ),
           }}
         />
-       <RHFTextField
-          name={"Xác nhận mật khẩu"}
+        <RHFTextField
+          name={"passwordConfirm"}
           label="Nhập lại mật khẩu mới"
           type={showPassword ? "text" : "password"}
           InputProps={{
@@ -97,7 +100,7 @@ const NewPWForm = () => {
           }}
         />
       </Stack>
-      
+
       <Stack p={1}>
         <Button
           fullWidth
