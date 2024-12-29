@@ -190,10 +190,10 @@ export function VerifyEmail(formValues) {
       )
       .then(function (response) {
         console.log(response);
-        // dispatch(slice.actions.logIn({
-        //   isLoggedIn: true,
-        //   token: response.data.token,
-        // }))
+        dispatch(slice.actions.logIn({
+          isLoggedIn: true,
+          token: response.data.token,
+        }))
       })
       .catch(function (error) {
         console.log(error);
