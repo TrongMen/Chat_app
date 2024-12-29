@@ -101,7 +101,7 @@ export function NewPW(formValues) {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
+        
         }
       )
       .then(function (response) {

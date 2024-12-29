@@ -1,0 +1,66 @@
+import React from 'react'
+import { useForm } from 'react-hook-form';
+import * as Yup from "yup";
+import FormProvider from '../../components/hook-form/FormProvider';
+import { Button, Stack } from '@mui/material';
+import { yupResolver } from "@hookform/resolvers/yup";
+const VerifyForm = () => {
+    const VerifyCodeSchema =Yup.object().shape({
+        code1: Yup.string().required("Nhập mã OTP"),
+        code2: Yup.string().required("Nhập mã OTP"),
+        code3: Yup.string().required("Nhập mã OTP"),
+        code4: Yup.string().required("Nhập mã OTP"),
+        code5: Yup.string().required("Nhập mã OTP"),
+        code6: Yup.string().required("Nhập mã OTP"),
+    });
+    const defaultValues ={
+        code1: "",
+        code2: "",
+        code3: "",
+        code4: "",
+        code5: "",
+        code6: "",
+    }
+
+    const methods = useForm({
+        mode:"onChange",
+        resolver:yupResolver(VerifyCodeSchema),
+        defaultValues,
+    });
+
+    const {handleSubmit, formState} = methods;
+
+    const onSubmit = async (data) => {
+        try{
+
+        }catch(error){
+            console.log(error);
+            
+        };
+    };
+  return (
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={2}>
+        <Stack p={1}>
+        <Button
+          fullWidth
+          color="inherit"
+          size="large"
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: "text.primary",
+
+            color: (theme) =>
+              theme.palette.mode === "light" ? "common.white" : "grey.800",
+          }}
+        >
+          Xác thực
+        </Button>
+      </Stack>
+        </Stack>
+    </FormProvider>
+  )
+}
+
+export default VerifyForm
