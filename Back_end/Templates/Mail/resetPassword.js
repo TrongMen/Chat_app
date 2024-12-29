@@ -1,5 +1,5 @@
 module.exports = (name, link) => {
-    return `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  return `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     
     <head>
@@ -134,8 +134,9 @@ module.exports = (name, link) => {
                                     <tr>
                                       <td style="padding-right: 0px;padding-left: 0px;" align="center">
     
-                                        <img align="center" border="0" src="https://assets.unlayer.com/projects/47137/1675000768671-logo.ico" alt="Sateeq Logo" title="Sateeq Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 19%;max-width: 106.4px;"
-                                          width="106.4" />
+                                        <div style="font-family: arial black,AvenirNext-Heavy,avant garde,arial; font-size: 30px; line-height: 140%; text-align: center; word-wrap: break-word;">
+                                <p style="line-height: 140%; margin: 0px;"><span style="color: #f1c40f; line-height: 42px;"><strong>CHAT APP</strong></span></p>
+                              </div>
     
                                       </td>
                                     </tr>
@@ -177,10 +178,10 @@ module.exports = (name, link) => {
                                 <td style="overflow-wrap:break-word;word-break:break-word;padding:55px;font-family:'Cabin',sans-serif;" align="left">
     
                                   <div style="color: #ffffff; line-height: 140%; text-align: left; word-wrap: break-word;">
-                                    <p style="font-size: 14px; line-height: 140%;"><span style="color: #000000; line-height: 19.6px;">Hello ${name},</span></p>
+                                    <p style="font-size: 14px; line-height: 140%;"><span style="color: #000000; line-height: 19.6px;">Xin chào ${name},</span></p>
                                     <p style="font-size: 14px; line-height: 140%;"> </p>
-                                    <p style="font-size: 14px; line-height: 140%;"><span style="color: #000000; line-height: 19.6px;">Please click on the given button to reset your password</span><br /><br /><span style="color: #000000; line-height: 19.6px;">Note: This link is valid for only 10 mins.</span></p>
-                                    <p style="font-size: 14px; line-height: 140%;"><br /><br /><span style="color: #000000; line-height: 19.6px;">Thanks &amp; Regards</span><br /><span style="color: #000000; line-height: 19.6px;">Team Task</span></p>
+                                    <p style="font-size: 14px; line-height: 140%;"><span style="color: #000000; line-height: 19.6px;">Vui lòng nhấn vào nút bên dưới để đổi mật khẩu</span><br /><br /><span style="color: #000000; line-height: 19.6px;">Lưu ý: link này chỉ tồn tại trong 10 phút.</span></p>
+                                    <p style="font-size: 14px; line-height: 140%;"><br /><br /><span style="color: #000000; line-height: 19.6px;">Cảm ơn bạn đã sử dụng ứng dụng. Xin cảm ơn</span><br /><span style="color: #000000; line-height: 19.6px;">Nhóm</span></p>
                                   </div>
     
                                 </td>
@@ -263,8 +264,7 @@ module.exports = (name, link) => {
                                 <td style="overflow-wrap:break-word;word-break:break-word;padding:48px;font-family:'Cabin',sans-serif;" align="left">
     
                                   <div style="color: #958d8d; line-height: 170%; text-align: center; word-wrap: break-word;">
-                                    <p style="font-size: 14px; line-height: 170%;">Love 💙 Team Tawk</p>
-                                    <p style="font-size: 14px; line-height: 170%;">For any assistance and queries write to us at <a rel="noopener" href="mailto:support@codingmonk.in?" target="_blank">Support@codingmonk.in</a><br /><br /></p>
+                                    <p style="font-size: 14px; line-height: 170%;">Nếu bạn cần sự hỗ trợ thì hãy liên hệ đến email <a rel="noopener" href="mailto:menht8602@support?" target="_blank">menht8602@support</a><br /><br /></p>
                                   </div>
     
                                 </td>
@@ -293,5 +293,5 @@ module.exports = (name, link) => {
       <!--[if IE]></div><![endif]-->
     </body>
     
-    </html>`
-}
+    </html>`;
+};
