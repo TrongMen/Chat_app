@@ -58,18 +58,23 @@ export function LoginUser(formValues) {
             token: response.data.token,
           })
         );
-        dispatch(showSnackBar({ severity: "success", message: response.data.message }));
+        window.localStorage.setItem("user_id", response.data.user_id);
+        dispatch(
+          showSnackBar({ severity: "success", message: response.data.message })
+        );
       })
       .catch(function (error) {
         console.log(error);
-        dispatch(showSnackBar({ severity: "error", message:error.message }));
+        dispatch(showSnackBar({ severity: "error", message: error.message }));
       });
   };
 }
 
 export function LogoutUser() {
   return async (dispatch, getState) => {
+    window.localStorage.removeItem('user_id');
     dispatch(slice.actions.signOut());
+    
   };
 }
 
@@ -205,6 +210,7 @@ export function VerifyEmail(formValues) {
             token: response.data.token,
           })
         );
+        window.localStorage.setItem("user_id", response.data.user_id);
       })
       .catch(function (error) {
         console.log(error);

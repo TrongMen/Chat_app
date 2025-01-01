@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "../../utils/axios";
 
 const initialState = {
   sidebar: {
