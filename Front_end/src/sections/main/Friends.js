@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Dialog, DialogContent, Slide, Stack, Tab, Tabs } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const UsersList = () => {
   const dispatch = useDispatch();
 
-  const { users } = useSelector((state) => state.app);
+  const { users = []  } = useSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(FetchUsers());
@@ -33,7 +33,7 @@ const UsersList = () => {
 const FriendsList = () => {
   const dispatch = useDispatch();
 
-  const { friends } = useSelector((state) => state.app);
+  const { friends = [] } = useSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(FetchFriends());
@@ -51,7 +51,7 @@ const FriendsList = () => {
 const RequestsList = () => {
   const dispatch = useDispatch();
 
-  const { friendRequests } = useSelector((state) => state.app);
+  const { friendRequests = [] } = useSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(FetchFriendRequests());
@@ -67,7 +67,7 @@ const RequestsList = () => {
 };
 
 const Friends = ({ open, handleClose }) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

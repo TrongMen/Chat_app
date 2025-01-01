@@ -1,6 +1,5 @@
-import React from 'react'
-import io from 'socket.io-client'
 
+import io from 'socket.io-client';
 
 let socket;
 

@@ -31,7 +31,7 @@ const Chats = () => {
   };
 
   const handleOpenDialog = () => {
-    setOpenDialog(false);
+    setOpenDialog(true);
   };
   const theme = useTheme();
   return (
@@ -55,7 +55,7 @@ const Chats = () => {
           >
             <Typography variant="h5">Chats</Typography>
             <Stack direction={"row"} alignItems={"center"} spacing={1.5}>
-              <IconButton onClick={() => {}}>
+            <IconButton onClick={handleOpenDialog}>
                 <Users size={32} />
               </IconButton>
               <IconButton>

@@ -14,6 +14,8 @@ const initialState = {
   users: [],
   friends: [],
   friendRequests: [],
+  chat_type: null,
+  room_id: null,
 };
 
 const slice = createSlice({
@@ -63,6 +65,10 @@ const slice = createSlice({
     updateFriendRequests(state, action) {
       state.friendRequests = action.payload.request;
     },
+    selectConvesations(state, action) {
+      state.chat_type = "individual";
+      state.room_id = action.payload.room_id;
+    }
   },
 });
 
@@ -109,6 +115,7 @@ export const FetchUsers = () => {
       })
       .catch((err) => {
         console.log(err);
+        // dispatch(slice.actions.updateUsers({ users: [] })); // Lưu ý
       });
   };
 };
@@ -135,7 +142,7 @@ export const FetchFriends = () => {
 export const FetchFriendRequests = () => {
   return async (dispatch, getState) => {
     await axios
-      .get("/users/get-friend-requests", {
+      .get("/users/get-requests", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${getState().auth.token}`,
@@ -152,3 +159,9 @@ export const FetchFriendRequests = () => {
       });
   };
 };
+
+export const SelectConvesations = (room_id) => {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.selectConvesations({ room_id }));
+  };
+}
