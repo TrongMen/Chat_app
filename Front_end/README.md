@@ -9,3 +9,6 @@ npm run eject
 Bước 1: npm cache clean --force
 Bước 2: Remove-Item -Recurse -Force node_modules
 Bước 3: npm install --legacy-peer-deps
+
+
+Nhớ mở 1 số cm trong ProfileForm

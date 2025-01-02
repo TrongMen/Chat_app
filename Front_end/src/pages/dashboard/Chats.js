@@ -12,9 +12,9 @@ import {
   MagnifyingGlass,
   Users,
 } from "phosphor-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
-import { ChatList } from "../../data";
+// import { ChatList } from "../../data";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import {
   Search,
@@ -23,9 +23,21 @@ import {
 } from "../../components/Search";
 import ChatElement from "../../components/ChatElement";
 import Friends from "../../sections/main/Friends";
-
+import { socket } from "../../socket";
+import { useSelector } from "react-redux";
+const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
   const [openDialog, setOpenDialog] = React.useState(false);
+  const theme = useTheme();
+
+  const {conversations} = useSelector((state) => state.conversation.direct_chat);
+  useEffect(() => {
+    socket.emit("get_direct_conversations",{user_id},(data) =>{
+
+    });
+
+  }, []);
+
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
@@ -33,7 +45,9 @@ const Chats = () => {
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
-  const theme = useTheme();
+
+
+ 
   return (
     <>
       <Box
@@ -88,18 +102,18 @@ const Chats = () => {
           >
             <SimpleBarStyle timeout={500} clickOnTrack={false}>
               <Stack spacing={2.4}>
-                <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                {/* <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   Ghim tin nhắn
                 </Typography>
                 {ChatList.filter((el) => el.pinned).map((el) => {
                   return <ChatElement key={el.id} {...el} />;
-                })}
+                })} */}
               </Stack>
               <Stack spacing={2.4}>
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   Tin nhắn
                 </Typography>
-                {ChatList.filter((el) => !el.pinned).map((el) => {
+                {conversations.filter((el) => !el.pinned).map((el) => {
                   return <ChatElement key={el.id} {...el} />;
                 })}
               </Stack>

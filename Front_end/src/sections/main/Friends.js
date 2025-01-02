@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog, DialogContent, Slide, Stack, Tab, Tabs } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,7 +6,11 @@ import {
   FetchFriends,
   FetchUsers,
 } from "../../redux/slices/app";
-import { FriendElement, FriendRequestElement, UserElement } from "../../components/UserElement";
+import {
+  FriendElement,
+  FriendRequestElement,
+  UserElement,
+} from "../../components/UserElement";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -15,11 +19,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const UsersList = () => {
   const dispatch = useDispatch();
 
-  const { users = []  } = useSelector((state) => state.app);
+  const { users = [] } = useSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(FetchUsers());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -37,12 +41,13 @@ const FriendsList = () => {
 
   useEffect(() => {
     dispatch(FetchFriends());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       {friends.map((el, idx) => {
         return <FriendElement key={idx} {...el} />;
+        // key={idx} {...el}
       })}
     </>
   );
@@ -55,7 +60,7 @@ const RequestsList = () => {
 
   useEffect(() => {
     dispatch(FetchFriendRequests());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -97,13 +102,13 @@ const Friends = ({ open, handleClose }) => {
           <Stack spacing={2.4}>
             {(() => {
               switch (value) {
-                case 0: // display all users in this list
+                case 0: 
                   return <UsersList />;
 
-                case 1: // display friends in this list
+                case 1: 
                   return <FriendsList />;
 
-                case 2: // display request in this list
+                case 2: 
                   return <RequestsList />;
 
                 default:

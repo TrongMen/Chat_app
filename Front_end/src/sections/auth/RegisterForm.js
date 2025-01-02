@@ -43,7 +43,7 @@ const RegisterForm = () => {
     reset,
     setError,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors }, // , isSubmitting, isSubmitSuccessful // nhớ mở
   } = methods;
 
   const onSubmit = async (data) => {

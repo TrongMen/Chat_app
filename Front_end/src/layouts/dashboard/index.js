@@ -15,12 +15,19 @@ const DashboardLayout = () => {
   useEffect(() => {
     if (isLoggedIn) {
       window.onload = function () {
-        if (!window.location.hash) {
-          window.location = window.location + "#loaded";
+        if (!window.location.hash || window.location.hash !== "#loaded") {
+          window.location.hash = "#loaded";
           window.location.reload();
         }
       };
-      window.onload();
+      
+      // window.onload = function () {
+      //   if (!window.location.hash) {
+      //     window.location = window.location + '#loaded';
+      //     window.location.reload();
+      //   }
+      // };
+      // window.onload();
       if (!socket) {
         connectSocket(user_id);
       }
@@ -42,7 +49,7 @@ const DashboardLayout = () => {
       socket.off("request_accepted");
       socket.off("request_sent");
     };
-  }, [isLoggedIn, socket]);
+  }, [isLoggedIn,dispatch, user_id]);
   if (!isLoggedIn) {
     return <Navigate to={"/auth/login"} />;
   }

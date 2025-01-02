@@ -27,28 +27,28 @@ const ProfileForm = () => {
 
   const {
     reset,
-    watch,
-    control,
+    // watch, // nhớ mở
+    // control, // nhớ mở
     setError,
-    setValue,
+    // setValue, // nhớ mở
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors }, // , isSubmitting, isSubmitSuccessful // nhớ mở
   } = methods;
 
-  const values = watch();
+  // const values = watch(); 
 
-  const handleDrop = React.useCallback(
-    (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      const newFile = Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      });
-      if (file) {
-        setValue("avataUrl", newFile, { shouldValidate: true });
-      }
-    },
-    [setValue]
-  );
+  // const handleDrop = React.useCallback(
+  //   (acceptedFiles) => {
+  //     const file = acceptedFiles[0];
+  //     const newFile = Object.assign(file, {
+  //       preview: URL.createObjectURL(file),
+  //     });
+  //     if (file) {
+  //       setValue("avataUrl", newFile, { shouldValidate: true });
+  //     }
+  //   },
+  //   [setValue]
+  // );
 
   const onSubmit = async (data) => {
     try {

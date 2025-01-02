@@ -13,14 +13,13 @@ import {
   StyledInputBase,
 } from "../../components/Search";
 import { MagnifyingGlass, Plus } from "phosphor-react";
-import { useTheme } from "@mui/material/styles";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import { ChatList } from "../../data";
 import ChatElement from "../../components/ChatElement";
 import CreateGroup from "../../sections/main/CreateGroup";
 
 const GroupChat = () => {
-  const theme = useTheme();
+  
   const [openDialog, setOpenDialog] = React.useState(false);
 
   const handleCloseDialog = () => {
