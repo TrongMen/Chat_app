@@ -14,20 +14,20 @@ const DashboardLayout = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      window.onload = function () {
-        if (!window.location.hash || window.location.hash !== "#loaded") {
-          window.location.hash = "#loaded";
-          window.location.reload();
-        }
-      };
-      
       // window.onload = function () {
-      //   if (!window.location.hash) {
-      //     window.location = window.location + '#loaded';
+      //   if (!window.location.hash || window.location.hash !== "#loaded") {
+      //     window.location.hash = "#loaded";
       //     window.location.reload();
       //   }
       // };
-      // window.onload();
+      
+      window.onload = function () {
+        if (!window.location.hash) {
+          window.location = window.location + '#loaded';
+          window.location.reload();
+        }
+      };
+      window.onload();
       if (!socket) {
         connectSocket(user_id);
       }

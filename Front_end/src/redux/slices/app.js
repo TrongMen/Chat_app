@@ -103,7 +103,7 @@ export function closeSnackBar() {
 export const FetchUsers = () => {
   return async (dispatch, getState) => {
     await axios
-      .get("/users/get-users", {
+      .get("/user/get-users", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${getState().auth.token}`,
@@ -123,7 +123,7 @@ export const FetchUsers = () => {
 export const FetchFriends = () => {
   return async (dispatch, getState) => {
     await axios
-      .get("/users/get-friends", {
+      .get("/user/get-friends", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${getState().auth.token}`,
@@ -142,7 +142,7 @@ export const FetchFriends = () => {
 export const FetchFriendRequests = () => {
   return async (dispatch, getState) => {
     await axios
-      .get("/users/get-requests", {
+      .get("/user/get-requests", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${getState().auth.token}`,
