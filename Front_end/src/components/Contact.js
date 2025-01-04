@@ -90,7 +90,7 @@ const Contact = () => {
   const handleCloseDelete = () => {
     setOpenDel(false);
   };
-
+// Thông tin liên hệ
   return (
     <Box sx={{ width: 320, height: "100vh" }}>
       <Stack sx={{ height: "100%" }}>

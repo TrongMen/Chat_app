@@ -24,16 +24,21 @@ import {
 import ChatElement from "../../components/ChatElement";
 import Friends from "../../sections/main/Friends";
 import { socket } from "../../socket";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchDirectConversations } from "../../redux/slices/conversation";
+import useResponsive from "../../hooks/useResponsive";
+
 const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const theme = useTheme();
-
+  const dispatch = useDispatch();
   const {conversations} = useSelector((state) => state.conversation.direct_chat);
+  const isDesktop = useResponsive("up", "md");
+
   useEffect(() => {
     socket.emit("get_direct_conversations",{user_id},(data) =>{
-
+      dispatch(FetchDirectConversations({ conversations: data }));
     });
 
   }, []);
@@ -61,6 +66,10 @@ const Chats = () => {
           boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
         }}
       >
+        {!isDesktop && (
+          
+          <BottomNav />
+        )}
         <Stack p={3} spacing={2} sx={{ height: "100vh" }}>
           <Stack
             direction={"row"}
@@ -77,7 +86,7 @@ const Chats = () => {
               </IconButton>
             </Stack>
           </Stack>
-          <Stack sx={{ width: "100%" }}>
+          <Stack sx={{ width: "100%" }} className="Tìm kiếm">
             <Search>
               <SearchInconWrapper>
                 <MagnifyingGlass color="#709CE6" />

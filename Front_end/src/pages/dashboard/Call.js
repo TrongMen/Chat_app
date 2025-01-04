@@ -43,7 +43,7 @@ const Call = () => {
         >
           <Stack p={3} spacing={2} sx={{ maxHeight: "100vh" }}>
             <Stack>
-              <Typography variant="h5">Nhóm</Typography>
+              <Typography variant="h5">Liên lạc</Typography>
             </Stack>
 
             <Stack sx={{ width: "100%" }} className="ThanhTimKiem">

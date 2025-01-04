@@ -17,6 +17,8 @@ import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
+import { useDispatch, useSelector } from "react-redux";
+import { ToggleSideBar } from "../../redux/slices/app";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -63,6 +65,10 @@ const Conversation_Menu = [
 ];
 
 const ChatHeader = () => {
+  const dispatch = useDispatch();
+  const { current_conversation } = useSelector(
+    (state) => state.conversation.direct_chat
+  );
   const isMobile = useResponsive("between", "md", "xs", "sm");
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
@@ -97,6 +103,7 @@ const ChatHeader = () => {
           onClick={() => {
             searchParams.set("open", true);
             setSearchParams(searchParams);
+            // dispatch(ToggleSideBar());
           }}
           spacing={2}
           direction="row"
@@ -110,16 +117,32 @@ const ChatHeader = () => {
               }}
               variant="dot"
             >
-              <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} />
+              <Avatar 
+              alt={faker.name.fullName()} 
+              src={faker.image.avatar()} 
+              // alt={current_conversation?.name} 
+              // src={current_conversation?.img}  //  Nhớ xóa comment
+              />
             </StyledBadge>
           </Box>
           <Stack spacing={0.2}>
-            <Typography variant="subtitle2">{faker.name.fullName()}</Typography>
+            <Typography variant="subtitle2">
+              {faker.name.fullName()}
+              {/* {current_conversation?.name} */} {/*  Nhớ xóa comment */}
+              </Typography>
             <Typography variant="caption">Online</Typography>
           </Stack>
         </Stack>
-        <Stack direction={"row"} alignItems="center" spacing={isMobile ? 1 : 3}>
-          <IconButton>
+        <Stack direction={"row"} 
+        alignItems="center" 
+        spacing={isMobile ? 1 : 3}
+        >
+          <IconButton
+            // onClick={() => {
+                
+            //   dispatch(StartAudioCall(current_conversation.user_id));
+            // }}    // Nhớ xóa comment
+          >
             <VideoCamera />
           </IconButton>
           <IconButton>

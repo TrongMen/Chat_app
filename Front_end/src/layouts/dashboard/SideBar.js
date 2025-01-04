@@ -14,11 +14,12 @@ import { Nav_Buttons, Profile_Menu } from "../../data";
 import { useState } from "react";
 import useSettings from "../../hooks/useSettings";
 import { faker } from "@faker-js/faker";
-import Logo from "../../assets/Images/logo.ico";
+// import Logo from "../../assets/Images/logo.ico";
 import AntSwitch from "../../components/AntSwitch";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LogoutUser } from "../../redux/slices/auth";
+import ProfileMenu from "./ProfileMenu";
 
 const getPath = (index) => {
   switch (index) {
@@ -35,33 +36,40 @@ const getPath = (index) => {
   }
 };
 
-const getMenuPath = (index) => {
-  switch (index) {
-    case 0:
-      return "/profile";
-    case 1:
-      return "/auth/login";
+// const getMenuPath = (index) => {
+//   switch (index) {
+//     case 0:
+//       return "/profile";
+//     case 1:
+//       return "/auth/login";
 
-    default:
-      break;
-  }
-};
+//     default:
+//       break;
+//   }
+// };
 const SideBar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
-  const [selected, setSelected] = useState(0);
+  // const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const open = Boolean(anchorEl);
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
+  const selectedTab = tab;
+
+  const handleChangeTab = (index) => {
+    dispatch(UpdateTab({ tab: index }));
+    navigate(getPath(index));
+  };
+  // Thanh menu bên trái
   return (
     <Box
       p={2}
@@ -89,11 +97,11 @@ const SideBar = () => {
               borderRadius: 1.5,
             }}
           >
-            <img
+            {/* <img
               src={Logo}
               alt={"Chat App"}
               style={{ height: 64, width: 64 }}
-            />
+            /> */}
           </Box>
           <Stack
             sx={{ width: "max-content" }}
@@ -101,8 +109,8 @@ const SideBar = () => {
             alignItems="center"
             spacing={3}
           >
-            {Nav_Buttons.map((el) =>
-              el.index === selected ? (
+            {Nav_Buttons.map((el) => {
+              return el.index == selectedTab ? (
                 <Box
                   key={el.index}
                   p={1}
@@ -112,6 +120,9 @@ const SideBar = () => {
                   }}
                 >
                   <IconButton
+                    onClick={() => {
+                      handleChangeTab(el.index);
+                    }}
                     sx={{ width: "max-content", color: "#fff" }}
                     key={el.index}
                   >
@@ -121,8 +132,7 @@ const SideBar = () => {
               ) : (
                 <IconButton
                   onClick={() => {
-                    setSelected(el.index);
-                    navigate(getPath(el.index));
+                    handleChangeTab(el.index);
                   }}
                   sx={{
                     width: "max-content",
@@ -135,10 +145,11 @@ const SideBar = () => {
                 >
                   {el.icon}
                 </IconButton>
-              )
-            )}
+              );
+            })}
+
             <Divider sx={{ width: "48px" }} />
-            {selected === 3 ? (
+            {/* {selected === 3 ? (
               <Box
                 p={1}
                 sx={{
@@ -152,19 +163,19 @@ const SideBar = () => {
               </Box>
             ) : (
               <Stack></Stack>
-              // <IconButton
-              //   onClick={() => setSelected(3)}
-              //   sx={{
-              //     width: "max-content",
-              //     color:
-              //       theme.palette.mode === "Light"
-              //         ? "#000"
-              //         : theme.palette.text.primary,
-              //   }}
-              // >
-              //   <Gear />
-              // </IconButton>
-            )}
+              <IconButton
+                onClick={() => setSelected(3)}
+                sx={{
+                  width: "max-content",
+                  color:
+                    theme.palette.mode === "Light"
+                      ? "#000"
+                      : theme.palette.text.primary,
+                }}
+              >
+                <Gear />
+              </IconButton>
+            )} */}
           </Stack>
         </Stack>
 
@@ -175,7 +186,7 @@ const SideBar = () => {
             }}
             defaultChecked={theme.palette.mode === "dark"}
           />
-          <Avatar
+          {/* <Avatar
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
@@ -199,13 +210,11 @@ const SideBar = () => {
                 <MenuItem key={el.id} onClick={() => handleClick}>
                   <Stack
                     onClick={() => {
-                      if(idx === 1){
+                      if (idx === 1) {
                         dispatch(LogoutUser());
-                      }else{
+                      } else {
                         navigate(getMenuPath(idx));
                       }
-                      
-                      
                     }}
                     // onClick={() => {
                     //   navigate(getMenuPath(idx));
@@ -221,7 +230,8 @@ const SideBar = () => {
                 </MenuItem>
               ))}
             </Stack>
-          </Menu>
+          </Menu> */}
+          <ProfileMenu/>
         </Stack>
       </Stack>
     </Box>
