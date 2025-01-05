@@ -1,6 +1,8 @@
 import { Box, Stack } from "@mui/material";
 import React from "react";
 import { Chat_History } from "../../data";
+// import ChatFooter from "../Chat/Footer";
+// import ChatHeader from "../Chat/Header";
 import {
   DocMsg,
   LinkMsg,

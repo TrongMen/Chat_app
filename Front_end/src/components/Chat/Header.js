@@ -17,7 +17,7 @@ import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 // import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,  } from "react-redux"; //useSelector
 import { ToggleSideBar } from "../../redux/slices/app";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -66,9 +66,9 @@ const Conversation_Menu = [
 
 const ChatHeader = () => {
   const dispatch = useDispatch();
-  const { current_conversation } = useSelector(
-    (state) => state.conversation.direct_chat
-  );
+  // const { current_conversation } = useSelector(
+  //   (state) => state.conversation.direct_chat
+  // );
   const isMobile = useResponsive("between", "md", "xs", "sm");
   // const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
@@ -130,7 +130,7 @@ const ChatHeader = () => {
               {faker.name.fullName()}
               {/* {current_conversation?.name} */} {/*  Nhớ xóa comment */}
               </Typography>
-            <Typography variant="caption">Online</Typography>
+            <Typography variant="caption">Đang hoạt động</Typography>
           </Stack>
         </Stack>
         <Stack direction={"row"} 

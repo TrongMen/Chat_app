@@ -128,7 +128,8 @@ const Chats = () => {
                   Tin nhắn
                 </Typography>
                 {conversations.filter((el) => !el.pinned).map((el) => {
-                  return <ChatElement key={el.id} {...el} />;
+                  return <ChatElement key={el.id}  {...el} />;
+                  // key={el.id} 
                 })}
               </Stack>
             </SimpleBarStyle>

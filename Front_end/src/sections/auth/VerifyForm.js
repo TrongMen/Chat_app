@@ -34,7 +34,9 @@ const VerifyForm = () => {
     defaultValues,
   });
 
-  const { handleSubmit, formState } = methods;
+  const { handleSubmit, 
+    //formState 
+  } = methods;
 
   const onSubmit = async (data) => {
     try {

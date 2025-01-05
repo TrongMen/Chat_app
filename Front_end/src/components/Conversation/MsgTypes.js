@@ -12,11 +12,71 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
 import { Message_options } from "../../data";
+const MessageOptions = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+
+        // top: 0,
+        // right: incoming ? "calc(100% + 200px)" : "-80px",
+        
+        // left: incoming ? "-40px" : "unset", // Vị trí bên trái cho người nhận
+        // right: incoming ? "unset" : "-40px", // Vị trí bên phải cho người gửi
+      }}
+    >
+      <DotsThreeVertical
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+        size={25}
+        style={{ cursor: "pointer" }}
+      />
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        // anchorOrigin={{
+        //   vertical: "bottom",
+        //   horizontal: incoming ? "left" : "right", // Định vị dựa trên incoming
+        // }}
+        // transformOrigin={{
+        //   vertical: "top",
+        //   horizontal: incoming ? "left" : "right",
+        // }}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <Stack spacing={1} px={1}>
+          {Message_options.map((el, index) => (
+            <MenuItem key={index} onClick={handleClick}>
+              {el.title}
+            </MenuItem>
+          ))}
+        </Stack>
+      </Menu>
+    </Box>
+  );
+};
 const DocMsg = ({ el }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+      {!el.incoming && <MessageOptions incoming={el.incoming} />}
       <Box
         p={1.5}
         sx={{
@@ -52,6 +112,9 @@ const DocMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
+      {el.incoming && <MessageOptions incoming={el.incoming} />}
+      {/* <MessageOptions incoming={el.incoming} />
+      <MessageOptions /> */}
     </Stack>
   );
 };
@@ -60,6 +123,7 @@ const LinkMsg = ({ el }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+      {!el.incoming && <MessageOptions incoming={el.incoming} />}
       <Box
         p={1.5}
         sx={{
@@ -105,7 +169,9 @@ const LinkMsg = ({ el }) => {
           </Stack>
         </Stack>
       </Box>
-      <MessageOptions />
+      {el.incoming && <MessageOptions incoming={el.incoming} />}
+      {/* <MessageOptions incoming={el.incoming} />
+      <MessageOptions /> */}
     </Stack>
   );
 };
@@ -114,6 +180,7 @@ const ReplyMsg = ({ el }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+      {!el.incoming && <MessageOptions incoming={el.incoming} />}
       <Box
         p={1.5}
         sx={{
@@ -147,7 +214,9 @@ const ReplyMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {el.incoming && <MessageOptions incoming={el.incoming} />}
+      {/* <MessageOptions incoming={el.incoming} />
+      <MessageOptions /> */}
     </Stack>
   );
 };
@@ -156,6 +225,7 @@ const MediaMsg = ({ el }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+      {!el.incoming && <MessageOptions incoming={el.incoming} />}
       <Box
         p={1.5}
         sx={{
@@ -180,7 +250,9 @@ const MediaMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {el.incoming && <MessageOptions incoming={el.incoming} />}
+      {/* <MessageOptions incoming={el.incoming} />
+      <MessageOptions /> */}
     </Stack>
   );
 };
@@ -189,11 +261,12 @@ const TextMsg = ({ el }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
+      {!el.incoming && <MessageOptions incoming={el.incoming} />}
       <Box
         p={1.5}
         sx={{
           backgroundColor: el.incoming
-            ? theme.palette.background.neutral // vừa sửa default
+            ? theme.palette.background.neutral
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
@@ -206,47 +279,9 @@ const TextMsg = ({ el }) => {
           {el.message}
         </Typography>
       </Box>
-      <MessageOptions />
+      {el.incoming && <MessageOptions incoming={el.incoming} />}
+      
     </Stack>
-  );
-};
-
-const MessageOptions = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <>
-      <DotsThreeVertical
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        size={25}
-      />
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <Stack spacing={1} px={1}>
-          {Message_options.map((el,index) => (
-            <MenuItem key={index}  onClick={handleClick}>{el.title}</MenuItem>
-          ))}
-        </Stack>
-      </Menu>
-    </>
   );
 };
 

@@ -108,9 +108,10 @@ const FriendElement = ({ img, firstName, lastName, online, _id }) => {
           </Stack>
         </Stack>
         <Stack direction={"row"} spacing={2} alignItems={"center"}>
-          <IconButton onClick={() => {
-            socket.emit("start_conversation",{to:_id,from:user_id});
-          }}>
+          <IconButton  onClick={() => {
+              // start a new conversation
+              socket.emit("start_conversation", { to: _id, from: user_id });
+            }}>
             <Chat/>
           </IconButton>
           
