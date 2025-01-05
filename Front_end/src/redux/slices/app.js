@@ -6,8 +6,9 @@ const initialState = {
     open: false,
     type: "CONTACT",
   },
+  tab:0,
   snackbar: {
-    open: false, // null
+    open: null, // null
     severity: null,
     message: null,
   },
@@ -68,7 +69,11 @@ const slice = createSlice({
     selectConvesations(state, action) {
       state.chat_type = "individual";
       state.room_id = action.payload.room_id;
-    }
+    },
+    updateTab(state, action) {
+      state.tab = action.payload.tab;
+    },
+
   },
 });
 
@@ -160,8 +165,14 @@ export const FetchFriendRequests = () => {
   };
 };
 
-export const SelectConvesations = (room_id) => {
+export const SelectConvesations = ({room_id}) => {
   return async (dispatch, getState) => {
     dispatch(slice.actions.selectConvesations({ room_id }));
+  };
+}
+
+export function UpdateTab(tab) {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.updateTab(tab));
   };
 }

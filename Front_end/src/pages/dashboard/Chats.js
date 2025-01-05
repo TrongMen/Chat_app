@@ -27,6 +27,7 @@ import { socket } from "../../socket";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchDirectConversations } from "../../redux/slices/conversation";
 import useResponsive from "../../hooks/useResponsive";
+import  BottomNav  from "../../layouts/dashboard/BottomNav";
 
 const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
@@ -41,7 +42,7 @@ const Chats = () => {
       dispatch(FetchDirectConversations({ conversations: data }));
     });
 
-  }, []);
+  }, [dispatch]);
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -78,7 +79,11 @@ const Chats = () => {
           >
             <Typography variant="h5">Chats</Typography>
             <Stack direction={"row"} alignItems={"center"} spacing={1.5}>
-            <IconButton onClick={handleOpenDialog}>
+            <IconButton onClick={() => {
+                  handleOpenDialog();
+                }}
+                sx={{ width: "max-content" }}
+                >
                 <Users size={32} />
               </IconButton>
               <IconButton>

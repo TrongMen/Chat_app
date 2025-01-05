@@ -1,25 +1,23 @@
 import {
-  Avatar,
   Box,
   Divider,
   IconButton,
-  Menu,
-  MenuItem,
   Stack,
 } from "@mui/material";
-import { Gear } from "phosphor-react";
+// import { Gear } from "phosphor-react";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Nav_Buttons, Profile_Menu } from "../../data";
-import { useState } from "react";
+import { Nav_Buttons } from "../../data";
+
 import useSettings from "../../hooks/useSettings";
-import { faker } from "@faker-js/faker";
+
 // import Logo from "../../assets/Images/logo.ico";
 import AntSwitch from "../../components/AntSwitch";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { LogoutUser } from "../../redux/slices/auth";
+import { useDispatch, useSelector } from "react-redux";
+// import { LogoutUser } from "../../redux/slices/auth";
 import ProfileMenu from "./ProfileMenu";
+import { UpdateTab } from "../../redux/slices/app";
 
 const getPath = (index) => {
   switch (index) {
@@ -53,7 +51,7 @@ const SideBar = () => {
   const navigate = useNavigate();
   // const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
-
+  const { tab } = useSelector((state) => state.app);
   // const [anchorEl, setAnchorEl] = React.useState(null);
   // const open = Boolean(anchorEl);
   // const handleClick = (event) => {
@@ -110,7 +108,7 @@ const SideBar = () => {
             spacing={3}
           >
             {Nav_Buttons.map((el) => {
-              return el.index == selectedTab ? (
+              return el.index === selectedTab ? (
                 <Box
                   key={el.index}
                   p={1}

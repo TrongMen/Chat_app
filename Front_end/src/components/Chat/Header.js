@@ -15,7 +15,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import { faker } from "@faker-js/faker";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
 import { useDispatch, useSelector } from "react-redux";
 import { ToggleSideBar } from "../../redux/slices/app";
@@ -70,7 +70,7 @@ const ChatHeader = () => {
     (state) => state.conversation.direct_chat
   );
   const isMobile = useResponsive("between", "md", "xs", "sm");
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
 
   const [conversationMenuAnchorEl, setConversationMenuAnchorEl] =
@@ -101,9 +101,9 @@ const ChatHeader = () => {
       >
         <Stack
           onClick={() => {
-            searchParams.set("open", true);
-            setSearchParams(searchParams);
-            // dispatch(ToggleSideBar());
+            // searchParams.set("open", true);
+            // setSearchParams(searchParams);
+            dispatch(ToggleSideBar());
           }}
           spacing={2}
           direction="row"

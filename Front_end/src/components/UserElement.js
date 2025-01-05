@@ -63,7 +63,7 @@ const UserElement = ({ img, firstName, lastName, online, _id }) => {
               });
             }}
           >
-            Send Request
+            Gửi yêu cầu
           </Button>
         </Stack>
       </Stack>
@@ -165,6 +165,15 @@ const FriendRequestElement = ({ img, firstName, lastName, online, id }) => {
             }}
           >
             Chấp nhận
+          </Button>
+          <Button
+            onClick={() => {
+              socket.emit("accept_request", { request_id: id }, () => {
+                alert("request sent");
+              });
+            }}
+          >
+            Từ chối
           </Button>
         </Stack>
       </Stack>
