@@ -170,16 +170,47 @@ io.on("connection", async (socket) => {
     }
   });
 
-  socket.on("get_messages", async (data, callback) => {
+  socket.on("delete_conversation", async ({ user_id1, user_id2 }, callback) => {
     try {
-      const { messages } = await OneToOneMessage.findById(
-        data.conversation_id
-      ).select("messages");
-      callback(messages);
-    } catch (error) {
-      console.log(error);
+      await OneToOneMessage.deleteMany({
+        participants: { $size: 2, $all: [user_id1, user_id2] },
+      });
+  
+      callback({ status: "success", message: "Conversation deleted successfully!" });
+    } catch (err) {
+      console.error(err);
+      callback({ status: "error", message: "Failed to delete conversation!" });
     }
   });
+  
+
+  // socket.on("get_messages", async (data, callback) => {
+  //   try {
+  //     const { messages } = await OneToOneMessage.findById(
+  //       data.conversation_id
+  //     ).select("messages");
+  //     callback(messages);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
+  socket.on("get_messages", async (data, callback) => {
+    try {
+      const result = await OneToOneMessage.findById(data.conversation_id).select("messages");
+  
+      // Kiểm tra nếu không tìm thấy dữ liệu hoặc messages là null
+      if (!result || !result.messages) {
+        callback([]);  // Trả về một mảng rỗng nếu không có messages
+        return;
+      }
+  
+      callback(result.messages);
+    } catch (error) {
+      console.log(error);
+      callback([]);  // Trả về mảng rỗng trong trường hợp có lỗi
+    }
+  });
+  
 
   // Handle incoming text/link messages
   socket.on("text_message", async (data) => {

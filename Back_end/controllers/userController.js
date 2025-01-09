@@ -4,7 +4,6 @@ const User = require("../models/user");
 const VideoCall = require("../models/videoCall");
 const catchAsync = require("../utils/catchAsync");
 const filterObj = require("../utils/filterObj");
-
 const { generateToken04 } = require("./zegoServerAssistant");
 
 // Please change appID to your appId, appid is a number
@@ -14,6 +13,9 @@ const appID = process.env.ZEGO_APP_ID; // type: number
 // Please change serverSecret to your serverSecret, serverSecret is string
 // Example：'sdfsdfsd323sdfsdf'
 const serverSecret = process.env.ZEGO_SERVER_SECRET; // type: 32 byte length string
+
+
+
 
 exports.getMe = catchAsync(async (req, res, next) => {
   res.status(200).json({
@@ -276,3 +278,6 @@ exports.getCallLogs = catchAsync(async (req, res, next) => {
     data: call_logs,
   });
 });
+
+
+// module.exports = { acceptFriendRequest };
