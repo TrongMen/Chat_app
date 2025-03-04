@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const [role, setRole] = useState("student");
   const router = useRouter();
 
@@ -22,6 +24,13 @@ export default function LoginPage() {
         placeholder="Tên đăng nhập"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        className="p-2 border rounded mb-2 w-64"
+      />
+      <input
+        type="text"
+        placeholder="Nhập mật khẩu"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         className="p-2 border rounded mb-2 w-64"
       />
       <select
