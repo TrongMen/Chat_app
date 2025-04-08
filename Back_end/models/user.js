@@ -14,6 +14,18 @@ const userSchema = new mongoose.Schema({
   about: {
     type: String,
   },
+  phone: {
+    type: String,
+    validate: {
+      validator: function(phone) {
+        return /^[0-9]{10}$/.test(phone);
+      },
+      message: props => `${props.value} is not a valid phone number!`
+    }
+  },
+  birthDate: {
+    type: Date
+  },
   avatar: {
     type: String,
   },
@@ -75,6 +87,10 @@ const userSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ["Online", "Offline"],
+  },
+  gender: {
+    type: String,
+    enum: ["Male", "Female", "Other"],
   },
 });
 

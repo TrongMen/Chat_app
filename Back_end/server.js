@@ -60,7 +60,15 @@ server.listen(port, () => {
 // Listen for when the client connects via socket.io-client
 io.on("connection", async (socket) => {
   console.log(JSON.stringify(socket.handshake.query));
-  const user_id = socket.handshake.query["user_id"];
+  // Clean and validate user_id from query
+  let user_id = socket.handshake.query["user_id"];
+  if (user_id) {
+    user_id = user_id.replace(/"/g, ''); // Remove any extra quotes
+    if (!mongoose.Types.ObjectId.isValid(user_id)) {
+      console.log(`Invalid user_id format: ${user_id}`);
+      return;
+    }
+  }
 
   console.log(`User connected ${socket.id}`);
 
@@ -125,15 +133,25 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("get_direct_conversations", async ({ user_id }, callback) => {
-    const existing_conversations = await OneToOneMessage.find({
-      participants: { $all: [user_id] },
-    }).populate("participants", "firstName lastName avatar _id email status");
+    try {
+      const existing_conversations = await OneToOneMessage.find({
+        participants: { $all: [user_id] },
+      })
+        .maxTimeMS(20000) // Set 20 second timeout
+        .populate({
+          path: 'participants',
+          select: 'firstName lastName avatar _id email status',
+          options: { 
+            limit: 10 // Limit number of populated participants
+          }
+        });
 
-    // db.books.find({ authors: { $elemMatch: { name: "John Smith" } } })
-
-    console.log(existing_conversations);
-
-    callback(existing_conversations);
+      console.log(existing_conversations);
+      callback(existing_conversations || []);
+    } catch (err) {
+      console.error("Error fetching conversations:", err);
+      callback([]); // Return empty array on error
+    }
   });
 
   socket.on("start_conversation", async (data) => {

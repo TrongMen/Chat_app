@@ -25,7 +25,10 @@ exports.register = catchAsync(async (req, res, next) => {
     "firstName",
     "lastName",
     "email",
-    "password"
+    "password",
+    "phone",
+    "birthDate",
+    "gender"
   );
 
   const existing_user = await User.findOne({ email: email });

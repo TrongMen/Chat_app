@@ -33,6 +33,11 @@ const oneToOneMessageSchema = new mongoose.Schema({
       },
     },
   ],
+}, {
+  // Add indexes
+  indexes: [
+    { participants: 1 } // Index on participants array
+  ]
 });
 
 const OneToOneMessage = new mongoose.model(
